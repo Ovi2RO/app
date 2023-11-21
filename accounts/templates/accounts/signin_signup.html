@@ -1,0 +1,41 @@
+
+<div class="test">
+    <div cass="navbar">
+        {% include "accounts/navbar.html" %}
+    </div>
+
+
+    <div class="main">
+      
+        <input type="checkbox" id="chk" aria-hidden="true">
+
+        <div class="login">
+            <form action="{% url 'signin' %}" method="post">{% csrf_token %}
+                <label for="chk" aria-hidden="true">Login</label>
+                <input type="text" name='username' placeholder="User name" required="">
+                <input type="password" name='password' placeholder="Password" required="">
+                <button>Sign in</button>
+            </form>
+        </div>
+
+        <div class="signup">
+            <form action="{% url 'signup' %}" method="post">{% csrf_token %}
+                <label for="chk" aria-hidden="true">Sign up!</label>
+                <input type="text" name='username' placeholder="User name" required="">
+                <input type="email" name='email' placeholder="Email" required="">
+                <input type="password" name='password1' placeholder="Password" required="">
+                <input type="password" name='password2' placeholder="Confirm password" required="">
+                <button>Sign up</button>
+            </form>
+        </div>
+
+    
+    </div>
+</div>
+
+
+
+
+
+
+
