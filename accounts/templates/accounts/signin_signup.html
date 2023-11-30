@@ -1,11 +1,12 @@
+{% load i18n %}
+{% load account socialaccount %}
 
-
+{% load crispy_forms_filters %}
 
 <div class="test">
     <div cass="navbar">
         {% include "accounts/navbar.html" %}
     </div>
-
 
     <div class="main">
       
@@ -18,6 +19,23 @@
                 <input type="password" name='password' placeholder="Password" required="">
                 <button>Sign in</button>
                 <a class="button secondaryAction text-center" href="{% url 'account_reset_password' %}">Forgot Password?</a>
+                <hr>
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="text-center">
+                      {% get_providers as socialaccount_providers %} 
+                      {% if socialaccount_providers %}
+                        {% blocktrans with site.name as site_name %}Sign in with:{% endblocktrans %}
+                        
+                        <div class="socialaccount_ballot">
+                          <div class="socialaccount_providers">
+                            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                          </div>
+                        </div>
+                        
+                        {% include "socialaccount/snippets/login_extra.html" %}
+                      {% endif %}
+                    </div>
+                  </div>
             </form>
         </div>
 
@@ -32,6 +50,7 @@
             </form>
         </div>
     </div>
+
 </div>
 
 
