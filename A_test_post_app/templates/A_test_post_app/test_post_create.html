@@ -1,0 +1,18 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
+
+    <br>
+    <br>
+    <br>
+
+    <h1>Add new test_post</h1>
+
+    <div>
+        <form method='post'>{% csrf_token %}
+            {{ form.as_p }}
+            <input type='submit' value='App test_post' class="btn btn-success">
+        </form>
+    </div>
+
+{% endblock %}
