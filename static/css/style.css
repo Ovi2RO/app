@@ -5,7 +5,7 @@ body {
 }
 
 .thing1 {
-    background-image: url(/static/images/market.jpg);
+    background-image: url(/static/images/laika-alv.jpg);
     -webkit-background-size: cover;
     background-size: cover;
     display: table;
