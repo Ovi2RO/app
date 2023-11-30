@@ -30,6 +30,7 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('home/', include('home.urls')),
     path('accounts/', include('allauth.urls')),     # allAuth
+    path('marketplace/', include('marketplace.urls')),
 
     path('test/', include('A_test_post_app.urls')),     #way
 ]

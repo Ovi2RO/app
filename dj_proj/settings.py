@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 
     'A_test_post_app',
+    'marketplace.apps.MarketplaceConfig',
 ]
 """
 'accounts': This is a custom app specific to your project that likely handles user accounts and related 
