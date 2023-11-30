@@ -29,6 +29,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),
     path('home/', include('home.urls')),
+    path('accounts/', include('allauth.urls')),     # allAuth
+
+    path('test/', include('A_test_post_app.urls')),     #way
 ]
 """
 - `path('admin/', admin.site.urls)`: This URL pattern maps the '/admin/' URL to the Django admin site. 

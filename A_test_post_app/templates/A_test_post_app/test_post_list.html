@@ -1,0 +1,41 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+
+    <h1>TestPost list</h1>
+
+    <a class="navbar-button" href="{% url 'test-post-create' %}">Add test_post</a>
+
+    {% for test_post in test_posts %}
+        <div class="card mt-2">
+            <div class="card-header">
+                <strong>@{{ test_post.author.username }}</strong>
+            </div>
+            <div class="card-body justify-content-between">
+                <div>
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p>{{ post.description }}</p>
+                </div>
+                <div>
+                    <a href='{% url "test-post-detail" test_post.id %}'>{{ test_post.title }}</a>
+                    <p>{{ test_post.description|slice:":30" }}...</p>
+                    <div class="card-footer text-muted">
+                        Last update: {{ test_post.updated_at }}
+                    </div>
+                </div>
+                
+            </div>
+
+
+        </div>
+    {% endfor %}
+    
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,41 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="card mt-2">
+        <div class="card-header">
+            <h1>{{ test_post.title }}</h1>
+        </div>
+
+        <div class="card-body flex-row justify-content-between">
+            <p>{{ test_post.description | linebreaks }}</p>
+        </div>
+
+        <div class="card-footer text-muted">
+            <p>Author: {{ test_post.author }}</p>
+            <p>Created: {{ test_post.created_at }}</p>
+            <p>Last update: {{ test_post.updated_at }}</p>
+        </div>
+
+        <div>
+            {% if test_post.author == request.user or request.user.is_staff %}
+                <a class="btn btn-warning" href="{% url 'test-post-edit' test_post.id %}">Edit</a>
+                <a class="btn btn-danger" href="{% url 'test-post-delete' test_post.id %}">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+
+
+
+
+
+
+    
+
+    
+
+    
+
+{% endblock %}

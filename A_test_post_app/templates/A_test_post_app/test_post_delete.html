@@ -1,0 +1,20 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
+<br>
+<br>
+<br>
+
+    <h1>Delete {{ test_post.title }}?</h1>
+
+    <div>
+        <p>Description: {{ test_post.description }}</p>
+        <p>Created: {{ test_post.created_at }}</p>
+        <p>Last update: {{ test_post.updated_at }}</p>
+
+        <form method='post'>{% csrf_token %}
+            <button type='submit' class="btn btn-success">Confirm</button>
+            <a class="navbar-button" href="{% url 'test-post-detail' object.pk %}">Cancel</a>
+        </form>
+    </div>
+{% endblock %}
