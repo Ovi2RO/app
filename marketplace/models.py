@@ -21,13 +21,13 @@ class MarketplaceItemPost(models.Model):
     category = models.CharField(
         max_length=100, blank=True, null=True
     )  # this should be a list with several options
-    image = models.ImageField()  # gotta finish this one later
+    # image = models.ImageField()  # gotta finish this one later
 
     def __str__(self) -> str:
         return self.title
 
     def get_absolute_url(self):
-        return reverse("market_item_detail", kwargs={"pk": self.pk})
+        return reverse("marketplace_detail", kwargs={"pk": self.pk})
 
     def get_delete_url(self):
         return reverse("market_item_delete", kwargs={"pk": self.pk})

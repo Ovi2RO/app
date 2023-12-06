@@ -9,16 +9,18 @@
     </head>
     <body>
         <h1>Welcome to the marketplace</h1>
-        <div class="marketplacePost">
-            {% for post in marketposts %}
-                <a href="{% url "marketplace_detail" %}">
+        <button type="button"
+                onclick="location.href='{% url "marketplace_create" %}'">Create new post</button>
+        {% for post in marketposts %}
+            <a href="{{ post.get_absolute_url }}">
+                <div>
                     <h3>{{ post.title }}</h3>
                     <p>Seller: {{ post.author }}</p>
                     <p>Price: {{ post.price }}</p>
                     <p>Posted on: {{ post.created_on }}</p>
                     <p>Description: {{ post.description }}</p>
-                </a>
-            {% endfor %}
-        </div>
+                </div>
+            </a>
+        {% endfor %}
     </body>
 </html>

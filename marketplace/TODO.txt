@@ -1,0 +1,11 @@
+WRITE:
+- [tests] write tests
+- [model] make image upload work
+- [model] make the category a list of options
+- [permissions] make it so that a moderator can delete any
+post but user can only delete their own posts
+
+FIX:
+- [model] does not show location on detail view
+- [model] does not show created_on on detail view
+x [static] make styles.css work

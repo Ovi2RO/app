@@ -11,5 +11,5 @@ class CreateMarketplacePostForm(forms.ModelForm):
             "price",
             "location",
             "category",
-            "image",
+            # "image",
         ]

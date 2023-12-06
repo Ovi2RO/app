@@ -1,17 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Post details</title>
+        <link rel="stylesheet" href="{% static "marketplace/style.css" %}">
     </head>
     <body>
-        <h1>{{ marketpost.title }}</h1>
-        <h3>Sold for: {{ marketpost.price }}</h3>
-        <p>Sold by: {{ marketpost.author }}</p>
-        <p>Find more like these under: {{ marketpost.category }}</p>
-        <p>{{ marketpost.description }}</p>
-        <p>Where: {{ marketplace.location }}</p>
-        <p>Posted on {{ marketplace.created_on }}</p>
+        <div>
+            <h1>{{ marketpost.title }}</h1>
+            <h3>Sold for: {{ marketpost.price }}</h3>
+            <p>Sold by: {{ marketpost.author }}</p>
+            <p>Find more like these under: {{ marketpost.category }}</p>
+            <p>{{ marketpost.description }}</p>
+            <p>Where: {{ marketplace.location }}</p>
+            <p>Posted on {{ marketplace.created_on }}</p>
+        </div>
     </body>
 </html>

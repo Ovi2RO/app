@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     
     'accounts',
     'home',
+    'marketplace.apps.MarketplaceConfig',
 
     'django.contrib.sites',
     'allauth',
@@ -50,7 +51,6 @@ INSTALLED_APPS = [
     'crispy_forms',
 
     'A_test_post_app',
-    'marketplace.apps.MarketplaceConfig',
 ]
 """
 'accounts': This is a custom app specific to your project that likely handles user accounts and related 
@@ -144,7 +144,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [BASE_DIR / "static",
+                    BASE_DIR / "marketplace/static",]
 """
 1. STATIC_URL = 'static/': This setting defines the base URL for serving static files in your Django project. 
 The value `'static/'` specifies that static files will be served from URLs that start with 'static/'.

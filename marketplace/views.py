@@ -41,7 +41,7 @@ class MarketplaceUpdateView(UpdateView):
         "price",
         "location",
         "category",
-        "image",
+        # "image",
     ]
     success_url = "/marketplace/"
 

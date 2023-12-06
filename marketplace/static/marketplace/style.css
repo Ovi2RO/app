@@ -1,3 +1,6 @@
-.marketplacePost {
-    outline: 2px lightgreen;
+div {
+    border: 2px solid lightgreen;
+    padding: 15px;
+    background-color: lightsalmon;
+    margin-bottom: 20px;
 }
