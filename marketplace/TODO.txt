@@ -6,6 +6,7 @@ WRITE:
 post but user can only delete their own posts
 
 FIX:
-- [model] does not show location on detail view
-- [model] does not show created_on on detail view
+x [model] does not show location on detail view
+x [model] does not show created_on on detail view
+x [html] button redirecting to views not working
 x [static] make styles.css work

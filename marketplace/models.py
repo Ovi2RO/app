@@ -30,7 +30,7 @@ class MarketplaceItemPost(models.Model):
         return reverse("marketplace_detail", kwargs={"pk": self.pk})
 
     def get_delete_url(self):
-        return reverse("market_item_delete", kwargs={"pk": self.pk})
+        return reverse("marketplace_delete", kwargs={"pk": self.pk})
 
     def get_update_url(self):
-        return reverse("market_item_update", kwargs={"pk": self.pk})
+        return reverse("marketplace_update", kwargs={"pk": self.pk})

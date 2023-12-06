@@ -14,8 +14,12 @@
             <p>Sold by: {{ marketpost.author }}</p>
             <p>Find more like these under: {{ marketpost.category }}</p>
             <p>{{ marketpost.description }}</p>
-            <p>Where: {{ marketplace.location }}</p>
-            <p>Posted on {{ marketplace.created_on }}</p>
+            <p>Where: {{ marketpost.location }}</p>
+            <p>Posted on {{ marketpost.created_on }}</p>
         </div>
+        <button type="button"
+                onclick="location.href='{{ marketpost.get_update_url }}'">Edit post</button>
+        <button type="button"
+                onclick="location.href='{{ marketpost.get_delete_url }}'">Delete post</button>
     </body>
 </html>
