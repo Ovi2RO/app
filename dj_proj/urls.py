@@ -27,9 +27,9 @@ include other URL configurations.
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('accounts.urls')),
+    path('accounts/', include('allauth.urls')),  # allAuth
+    path('', include('accounts.urls')),  # ?
     path('home/', include('home.urls')),
-    path('accounts/', include('allauth.urls')),     # allAuth
 
     path('test/', include('A_test_post_app.urls')),     #to be removed
 ]
