@@ -187,3 +187,7 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'landing_view'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+

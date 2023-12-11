@@ -34,8 +34,12 @@ class MarketplaceItemPost(models.Model):
         blank=True,
         null=True,
         choices=category_choices,
-    )  # this should be a list with several options
-    # image = models.ImageField()  # gotta finish this one later
+    )
+    image = models.ImageField(
+        upload_to="images/",
+        null=True,
+        blank=True,
+    )  # gotta finish this one later
 
     def __str__(self) -> str:
         return self.title
