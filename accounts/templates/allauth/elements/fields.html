@@ -10,7 +10,7 @@
         </button>
     </div>
 {% endif %}
-
+saaaaaaaaaaaaaaaaaaaaaaaaaaaa
 {# Loop through fields in form #}
 {% for field in attrs.form %}
 
@@ -31,9 +31,9 @@
 
     {#  Customizing fields  #}
     <p>
-{#        <label for="{{ field.id_for_label }}">#}
-{#            {{ field.label_tag }}#}
-{#        </label>#}
+                <label for="{{ field.id_for_label }}">
+                    {{ field.label_tag }}
+                </label>
 
         {% if field.widget.input_type == "textarea" %}
             <textarea name="{{ field.html_name }}" id="{{ field.id_for_label }}"
@@ -45,17 +45,17 @@
             </textarea>
         {% else %}
             <div class="{% if field.field.widget.input_type == 'checkbox' %}checkbox-class-name{% else %}input-field{% endif %}">
-{#                {% if field.name == 'username' or field.name == 'login' %}#}
-{#                    <i class="fas fa-user"></i>#}
-{#                {% elif field.name == 'email' %}#}
-{#                    <i class="fas fa-envelope"></i>#}
-{#                {% elif field.name == 'password' or field.name == 'password1' or field.name == 'password2' %}#}
-{#                    <i class="fas fa-lock"></i>#}
-{#                {% endif %}#}
+                {% if field.name == 'username' or field.name == 'login' %}
+                    <i class="fas fa-user"></i>
+                {% elif field.name == 'email' %}
+                    <i class="fas fa-envelope"></i>
+                {% elif field.name == 'password' or field.name == 'password1' or field.name == 'password2' %}
+                    <i class="fas fa-lock"></i>
+                {% endif %}
                 <input name="{{ field.html_name }}" id="{{ field.id_for_label }}"
                        {% if field.field.required %}required{% endif %}
                        {% if field.field.disabled %}disabled{% endif %}
-                       placeholder="{{ field.field.widget.attrs.placeholder|default_if_none:'' }}"
+                       placeholder="{{ field.field.widget.attrs.placeholder|default_if_none:'sdfasdf' }}"
                        autocomplete="{{ field.field.widget.attrs.autocomplete|default_if_none:'off' }}"
                        value="{{ field.field.value|default_if_none:'' }}"
                        type="{{ field.field.widget.input_type }}">

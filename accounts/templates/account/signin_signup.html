@@ -20,7 +20,7 @@
                         <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
                 </p>
                 {% url 'account_login' as login_url %}
-                {% element form form=form method="post" action=login_url tags="entrance,login" %}
+                {% element form form=form_login method="post" action=login_url tags="entrance,login" %}
                     {% slot body %}
                         {% csrf_token %}
                         {% element fields form=form_login unlabeled=True %}
@@ -38,6 +38,12 @@
                     {% endslot %}
                 {% endelement %}
                 {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
             </div>
         </div>
 

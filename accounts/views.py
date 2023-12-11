@@ -1,5 +1,4 @@
-from allauth.account.views import SignupView
-from django.contrib.auth.views import LoginView
+from allauth.account.views import SignupView, LoginView
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -101,10 +100,13 @@ class UserSigninView(LoginView):
         context['form_signup'] = SignupView.form_class()
         return context
 """
-This class-based view extends `LoginView` and handles the sign-in functionality.
-It renders the "login_signup.html" template, uses the `AuthenticationForm` form class,
-and redirects to the "home" URL upon successful form submission.
-get_context_data() is used to pass the signup form to the template.
+This class-based view extends `LoginView`(allauth lib) and handles the sign-in functionality.
+It renders the "login_signup.html" template, uses the `LoginForm`(allauth lib) form class.
+LoginView has a lot of functionality and security, so it is better to use it instead of creating your own view.
+LoginForm has a lot of functionality and security, so it is better to use it instead of creating your own form.
+You can check it in the source code of allauth lib.
+
+get_context_data() is used to pass the signup form to the template when user clicks on "Sign up" button.
 """
 
 
@@ -119,9 +121,12 @@ class UserSignupView(SignupView):
         context['form_login'] = LoginView.form_class()
         return context
 """
-This class-based view extends `SignupView` and handles the sign-up functionality.
-It renders the "login_signup.html" template, uses the `SignupForm` form class,
-and redirects to the "home" URL upon successful form submission.
-get_context_data() is used to pass the login form to the template.
+This class-based view extends `SignupView`(allauth lib) and handles the sign-up functionality.
+It renders the "login_signup.html" template, uses the `SignupForm`(allauth lib) form class.
+SignupView has a lot of functionality and security, so it is better to use it instead of creating your own view.
+SignupForm has a lot of functionality and security, so it is better to use it instead of creating your own form.
+You can check it in the source code of allauth lib.
+
+get_context_data() is used to pass the login form to the template when user clicks on "Sign in" button.
 """
 
