@@ -3,6 +3,8 @@ WRITE:
 - [model] make the category a list of options
 - [permissions] make it so that a moderator can delete any
 post but user can only delete their own posts
+- user should be able to filter by their own posts
+- when user is under their own posts they should click on the button to delete and delete without being redirected
 x [model] make image upload work
 
 FIX:
