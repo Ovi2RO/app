@@ -1,14 +1,19 @@
 WRITE:
 - [tests] write tests
-- [model] make the category a list of options
 - [permissions] make it so that a moderator can delete any
 post but user can only delete their own posts
 - user should be able to filter by their own posts
 - when user is under their own posts they should click on the button to delete and delete without being redirected
+- [views] user should be able to view the marketplace but not access create view if not logged in
+- [model] make it possible to upload several images
+x [model] make the category a list of options
 x [model] make image upload work
 
 FIX:
-- [template] image display does not work
+- [list view] newer posts should appear at the top
+- [create form] make form unsubmittable if I don't add a picture
+- [delete] can not delete views from the browser
+x [template] image display does not work
 x [model] does not show location on detail view
 x [model] does not show created_on on detail view
 x [html] button redirecting to views not working

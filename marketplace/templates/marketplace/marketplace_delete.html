@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Delete post?</title>
-        <link rel="stylesheet" href="{% static "marketplace/style.css" %}">
+        <link rel="stylesheet" href="{% static "marketplace/css/style.css" %}">
     </head>
     <body>
         <div>
@@ -14,7 +14,7 @@
                 {% csrf_token %}
                 <button type="submit">Delete</button>
             </form>
-            <a href="{% url "post_list" %}">Cancel</a>
+            <a href="{% url "marketplace_list" %}">Cancel</a>
         </div>
     </body>
 </html>
