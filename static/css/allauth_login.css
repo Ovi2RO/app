@@ -17,11 +17,11 @@ body {
 
 .container {
     background-color: #fff;
-    border-radius: 30px;
+    border-radius: 0 30px 0 30px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.25);
     position: relative;
     overflow: hidden;
-    width: 768px;
+    width: 880px;
     max-width: 100%;
     /*min-height: 480px;*/
     min-height: 880px;
@@ -47,7 +47,7 @@ body {
 }
 
 .container button {
-    background-color: #1f4788;
+    background-color: #2759aa;
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -62,10 +62,14 @@ body {
 }
 
 .container button:hover {
-    background-color: #2759aa;
+    background-color: #1f4788;
 }
 .container button.hidden {
     background-color: transparent;
+    border-color: #fff;
+}
+.container button.hidden:hover {
+    background-color: #1f4788;
     border-color: #fff;
 }
 
@@ -200,7 +204,7 @@ h2{
 .container.active .sign-in,
 .container.active .sign-up {
     opacity: 1;
-    transition: transform 0.5s, opacity 0.5s; /* appearance speed */
+    transition: transform 0.5s, opacity 0.6s; /* appearance speed */
 }
 .container .sign-in {
     transform: translateX(0%);
@@ -208,12 +212,12 @@ h2{
     z-index: 5; /* Keep sign-in on top when it's active */
 }
 .container.active .sign-in {
-    transform: translateX(75%);
+    transform: translateX(50%);
     opacity: 0;
     z-index: 1; /* Move sign-in below when it's not active */
 }
 .container .sign-up {
-    transform: translateX(25%);
+    transform: translateX(50%);
     opacity: 0;
     z-index: 1; /* Keep sign-up below when it's not active */
 }
@@ -251,27 +255,45 @@ h2{
 }
 
 .toggle-container {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 50%;
     width: 50%;
     height: 100%;
     overflow: hidden;
-    transition: all 0.8s ease-in-out;
-    border-radius: 150px 0 0 100px;
+    transition: all 0.6s ease-in-out;
     z-index: 1000;
+    border-radius: 90px 30px 0 30px;
+    background: linear-gradient(to right, rgba(31, 71, 136, 0.85), rgba(0, 167, 105, 0.85));
+}
+
+.toggle-background-right {
+    position: absolute;
+    top: 340px;
+    scale: 45%;
+    left: 22%;
+    width: 100%;
+    height: 100%;
+    opacity: 0.85;
+}
+.toggle-background-left {
+    position: absolute;
+    top: 340px;
+    scale: 45%;
+    left: -52%;
+    width: 100%;
+    height: 100%;
+    opacity: 0.85;
 }
 
 .container.active .toggle-container {
     transform: translateX(-100%);
-    border-radius: 0 150px 100px 0;
+    border-radius: 0 30px 90px 30px;
 }
 
 .toggle {
-    background-color: #1f4788;
+    background: rgba(31, 71, 136, 0.5);  /* Fallback color */
     height: 100%;
-    background: linear-gradient(to right, rgba(31, 71, 136, 0.85), rgba(0, 167, 105, 0.85));
-    backdrop-filter: blur(10px);
     color: #fff;
     position: relative;
     left: -100%;
@@ -297,6 +319,7 @@ h2{
     top: 0;
     transform: translateX(0);
     transition: all 1s ease-in-out;
+    border-radius: 150px;
 }
 
 .toggle-left {
