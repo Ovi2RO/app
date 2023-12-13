@@ -3,7 +3,7 @@
 
 {% if attrs.form.non_field_errors %}
     <div role="alert"
-         style="margin-top: 50px; background: #ffea00">
+         style="margin-top: 50px; background: #f6ed42">
         {{ attrs.form.non_field_errors }}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -17,7 +17,7 @@
     {# customizing field errors #}
     {% if field.errors %}
         <div role="alert"
-             style="margin-top: 50px; background: #ffea00">
+             style="margin-top: 50px; background: #19a3f6">
             <ul style="padding: 20px; color: black; list-style-type: disc;">
                 {% for error in field.errors %}
                     <li>{{ error }}</li>
@@ -48,7 +48,7 @@
             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
         </div>
     {% else %}
-        {#            <label for="{{ field.id_for_label }}">{{ field.label }}</label>#}
+{#                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>#}
         <div class="input-field">
             {% if field.name == 'username' or field.name == 'login' %}
                 <i class="fas fa-user"></i>

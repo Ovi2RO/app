@@ -12,13 +12,15 @@
     <div class="container" id="container">
         <div class="form-container sign-in">
             <div class="form-block">
-                {% element h1 %}
-                    {% trans "Sign In" %}
-                {% endelement %}
-                <p>
-                    {% blocktrans %}If you have not created an account yet, then please
-                        <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
-                </p>
+                <div class="form-header">
+                    {% element h1 %}
+                        {% trans "Sign In" %}
+                    {% endelement %}
+                    <p>
+                        {% blocktrans %}If you have not created an account yet, then please
+                            <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+                    </p>
+                </div>
                 {% url 'account_login' as login_url %}
                 {% element form form=form_login method="post" action=login_url tags="entrance,login" %}
                     {% slot body %}
@@ -46,13 +48,14 @@
 
         <div class="form-container sign-up">
             <div class="form-block">
-                {% element h1 %}
-                    {% trans "Sign Up" %}
-                {% endelement %}
-                <p>
-                    {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>
-                        .{% endblocktrans %}
-                </p>
+                <div class="form-header">
+                    {% element h1 %}
+                        {% trans "Sign Up" %}
+                    {% endelement %}
+                    <p>
+                        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+                    </p>
+                </div>
                 {% url 'account_signup' as action_url %}
                 {% element form form=form method="post" action=action_url tags="entrance,signup" %}
                     {% slot body %}
