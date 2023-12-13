@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
+
     'crispy_forms',
 
     'A_test_post_app',
@@ -179,6 +181,16 @@ SOCIALACCOUNT_PROVIDERS = {
         },
         'OAUTH_PKCE_ENABLED': True,
     },
+    'github': {
+        'SCOPE': [
+            'user',
+            'repo',
+            'read:org',
+        ],
+        'AUTH_PARAMS': {
+            'allow_signup': 'true'
+        }
+    },
 }
 
 LOGIN_REDIRECT_URL = 'home'
@@ -186,4 +198,4 @@ LOGOUT_REDIRECT_URL = 'landing_view'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

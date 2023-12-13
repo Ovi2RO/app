@@ -5,6 +5,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, FormView, RedirectView
 
+from accounts.forms import CustomLoginForm
 
 """
 1. `from django.shortcuts import render, redirect`: This import allows you to render HTML templates 
@@ -92,6 +93,9 @@ It logs out the user and redirects to the "landing_view" URL.
 class UserSigninView(LoginView):
     template_name = 'account/signin_signup.html'
     success_url = '/'
+
+    def get_form_class(self):
+        return CustomLoginForm  # set remember=True by default
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
