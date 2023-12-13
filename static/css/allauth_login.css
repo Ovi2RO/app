@@ -41,9 +41,10 @@ body {
 
 .container a {
     color: #333;
-    font-size: 13px;
+    font-size: 14px;
     text-decoration: none;
     margin: 15px 0 10px;
+    cursor: pointer;
 }
 
 .container button {
@@ -59,6 +60,8 @@ body {
     margin-top: 10px;
     cursor: pointer;
     height: 46px;
+    max-width: 200px;
+    align-self: center;
 }
 
 .container button:hover {
@@ -190,7 +193,12 @@ h2{
     transition: all 0.6s ease-in-out;
 }
 
-
+/*.social-continue{*/
+/*    transform: translateY(10%);*/
+/*    width: 50%;*/
+/*    opacity: 1;*/
+/*    z-index: 5; */
+/*}*/
 /* When becoming invisible */
 .sign-in,
 .sign-up {
@@ -200,33 +208,32 @@ h2{
     transition: transform 0.5s, opacity 0.5s; /* disappearance speed */
     will-change: opacity, transform;
 }
-/* When becoming visible */
-.container.active .sign-in,
-.container.active .sign-up {
-    opacity: 1;
-    transition: transform 0.5s, opacity 0.6s; /* appearance speed */
-}
 .container .sign-in {
     transform: translateX(0%);
     opacity: 1;
     z-index: 5; /* Keep sign-in on top when it's active */
-}
-.container.active .sign-in {
-    transform: translateX(50%);
-    opacity: 0;
-    z-index: 1; /* Move sign-in below when it's not active */
 }
 .container .sign-up {
     transform: translateX(50%);
     opacity: 0;
     z-index: 1; /* Keep sign-up below when it's not active */
 }
+/* When becoming visible */
+.container.active .sign-in,
+.container.active .sign-up {
+    opacity: 1;
+    transition: transform 0.5s, opacity 0.6s; /* appearance speed */
+}
+.container.active .sign-in {
+    transform: translateX(50%);
+    opacity: 0;
+    z-index: 1; /* Move sign-in below when it's not active */
+}
 .container.active .sign-up {
     transform: translateX(100%);
     opacity: 1;
     z-index: 5; /* Bring sign-up to top when it's active */
 }
-
 
 .provider-list {
     display: flex;

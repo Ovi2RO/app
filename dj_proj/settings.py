@@ -198,4 +198,8 @@ LOGOUT_REDIRECT_URL = 'landing_view'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'

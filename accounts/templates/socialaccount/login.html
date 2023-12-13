@@ -1,4 +1,5 @@
 {% extends "socialaccount/base_entrance.html" %}
+{% load static %}
 {% load i18n %}
 {% load allauth %}
 {% block head_title %}
@@ -40,5 +41,23 @@
                 {% endelement %}
             </div>
         </div>
+        <div class="toggle-container">
+            <div class="toggle">
+
+                <div class="toggle-panel toggle-right">
+                    <h1>Oops...</h1>
+                    <p>Move back to Sign Up page</p>
+                    <button class="hidden" id="back-page" onclick="window.history.back();">Cancel</button>
+                </div>
+
+                <div class="toggle-background-right">
+                    <img src="{% static 'images/handz-right.png' %}" alt="" class="background-image">
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock content %}
+
+<style>
+
+</style>

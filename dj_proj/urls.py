@@ -27,7 +27,7 @@ include other URL configurations.
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),  # allAuth
+    path('allauth/', include('allauth.urls')),  # allAuth
     path('', include('accounts.urls')),  # ?
     path('home/', include('home.urls')),
 
