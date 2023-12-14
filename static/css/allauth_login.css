@@ -29,19 +29,16 @@ body {
 }
 
 .container p {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 20px;
     letter-spacing: 0.3px;
     margin: 10px 0;
 }
 
-.container span {
-    font-size: 12px;
-}
 
 .container a {
     color: #333;
-    font-size: 14px;
+    font-size: 15px;
     text-decoration: none;
     margin: 15px 0 10px;
     cursor: pointer;
@@ -50,7 +47,7 @@ body {
 .container button {
     background-color: #2759aa;
     color: #fff;
-    font-size: 12px;
+    font-size: 15px;
     padding: 10px 45px;
     border: 1px solid transparent;
     border-radius: 8px;
@@ -80,16 +77,17 @@ body {
 .checkbox-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 10px;
 }
 
 .checkbox-container input[type="checkbox"] {
-    transform: scale(1.25);
+    transform: scale(1.4);
 }
 
 .checkbox-container label {
     width: 250px;
+    font-size: 15px;
 }
 
 .form-block {
@@ -106,7 +104,7 @@ body {
 .form-header p a{
     text-decoration: -webkit-link;
     text-decoration: underline;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 form {
@@ -130,7 +128,7 @@ h2{
     border: none;
     margin: 8px 0;
     padding: 10px 15px;
-    font-size: 13px;
+    font-size: 15px;
     border-radius: 8px;
     width: 100%;
     outline: none;
@@ -141,7 +139,7 @@ h2{
     max-width: 380px;
     width: 100%;
     background-color: #f0f0f0;
-    margin: 10px 0;
+    margin: 14px 0;
     height: 46px;
     border-radius: 8px;
     display: grid;
