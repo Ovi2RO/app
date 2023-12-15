@@ -253,7 +253,7 @@ h2{
     overflow: hidden;
     transition: all 0.6s ease-in-out;
     z-index: 1000;
-    border-radius: 90px 30px 0 30px;
+    border-radius: 0 30px 0 30px;
 }
 /* Add two divs for backgrounds */
 .background1, .background2 {
@@ -303,7 +303,7 @@ h2{
 }
 .container.active .toggle-container {
     transform: translateX(-100%);
-    border-radius: 0 30px 90px 30px;
+    border-radius: 0 30px 0 30px;
     /*background: linear-gradient(to right, rgba(0, 167, 105, 0.85), rgba(31, 71, 136, 0.85));*/
 
 }
