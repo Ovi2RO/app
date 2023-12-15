@@ -1,4 +1,6 @@
-from allauth.account.views import *
+from allauth.account.views import LoginView, SignupView, LogoutView, PasswordChangeView, PasswordResetView, \
+    PasswordResetDoneView
+
 """
 Used Views from allauth lib:
 - `LoginView`: This view handles the sign-in functionality, security and validation.
