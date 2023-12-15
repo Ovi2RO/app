@@ -39,7 +39,7 @@ class MarketplaceItemPost(models.Model):
         upload_to="images/",
         null=True,
         blank=True,
-    )  # gotta finish this one later
+    )
 
     def __str__(self) -> str:
         return self.title
