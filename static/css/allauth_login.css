@@ -1,12 +1,14 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/*=============== BASE ===============*/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
-
 body {
-    background-color: #c9d6ff;
     background: linear-gradient(to right, #e2e2e2, #c9d6ff);
     display: flex;
     align-items: center;
@@ -23,19 +25,14 @@ body {
     overflow: hidden;
     width: 880px;
     max-width: 100%;
-    /*min-height: 480px;*/
     min-height: 880px;
-
 }
-
 .container p {
     font-size: 15px;
     line-height: 20px;
     letter-spacing: 0.3px;
     margin: 10px 0;
 }
-
-
 .container a {
     color: #333;
     font-size: 15px;
@@ -43,7 +40,6 @@ body {
     margin: 15px 0 10px;
     cursor: pointer;
 }
-
 .container button {
     background-color: #2759aa;
     color: #fff;
@@ -60,7 +56,6 @@ body {
     max-width: 200px;
     align-self: center;
 }
-
 .container button:hover {
     background-color: #1f4788;
 }
@@ -72,24 +67,12 @@ body {
     background-color: #1f4788;
     border-color: #fff;
 }
-
-
-.checkbox-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
 }
-
-.checkbox-container input[type="checkbox"] {
-    transform: scale(1.4);
-}
-
-.checkbox-container label {
-    width: 250px;
-    font-size: 15px;
-}
-
 .form-block {
     background-color: #fff;
     display: flex;
@@ -98,23 +81,18 @@ body {
     flex-direction: column;
     padding: 0 40px;
     height: 100%;
-    /*border: 2px solid coral;*/
 }
-
-.form-header p a{
-    text-decoration: -webkit-link;
-    text-decoration: underline;
-    font-size: 15px;
-}
-
 form {
-    /*margin: 10px 0;*/
     background-color: #fff;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    /*border: 2px solid coral;*/
     width: 100%;
+}
+.form-header p a{
+    text-decoration: -webkit-link;
+    text-decoration: underline;
+    font-size: 15px;
 }
 h1{
     text-align: center;
@@ -123,6 +101,8 @@ h2{
     margin-top: 40px;
 }
 
+
+/*=============== INPUTS ===============*/
 .container input {
     background-color: #eee;
     border: none;
@@ -133,7 +113,6 @@ h2{
     width: 100%;
     outline: none;
 }
-
 .input-field {
     align-content: center;
     max-width: 380px;
@@ -148,7 +127,6 @@ h2{
     position: relative;
     border: 1px solid #acacac;
 }
-
 .input-field i {
     align-content: center;
     text-align: center;
@@ -157,7 +135,6 @@ h2{
     transition: 0.5s;
     font-size: 1.1rem;
 }
-
 .input-field input {
     background: none;
     outline: none;
@@ -172,31 +149,63 @@ h2{
     margin-top: 8px;
     margin-bottom: 8px;
 }
-
 .input-field input:focus {
     border: 1px solid rgba(31, 71, 136, 0.75);
-/*    make some glowing effect*/
     box-shadow: 0 0 4px rgba(31, 71, 136, 0.75);
 }
-
 .input-field input::placeholder {
     color: #aaa;
     font-weight: 500;
 }
 
-.form-container {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    transition: all 0.6s ease-in-out;
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+.checkbox-container input[type="checkbox"] {
+    transform: scale(1.4);
+}
+.checkbox-container label {
+    width: 250px;
+    font-size: 15px;
 }
 
-/*.social-continue{*/
-/*    transform: translateY(10%);*/
-/*    width: 50%;*/
-/*    opacity: 1;*/
-/*    z-index: 5; */
-/*}*/
+
+/*=============== SOCIALS ===============*/
+.provider-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.social-icons {
+    margin: 20px 0;
+}
+.social-icons a {
+    border: 1px solid #151b2e;
+    border-radius: 20%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    width: 40px;
+    height: 40px;
+}
+.social-icons a i {
+    font-size: 18px;
+    color: #151b2e;
+}
+.social-icons a:hover {
+    background-color: rgb(31, 71, 136);
+}
+.social-icons a:hover i{
+    font-size: 20px;
+    color: #fff;
+}
+
+/*=============== ANIMATIONS ===============*/
 /* When becoming invisible */
 .sign-in,
 .sign-up {
@@ -233,32 +242,8 @@ h2{
     z-index: 5; /* Bring sign-up to top when it's active */
 }
 
-.provider-list {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
 
-.social-icons {
-    margin: 20px 0;
-}
-
-.social-icons a {
-    border: 1px solid #151b2e;
-    border-radius: 20%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 5px;
-    width: 40px;
-    height: 40px;
-}
-
-.social-icons a i {
-    font-size: 18px;
-    color: #151b2e;
-}
-
+/*=============== TOGGLE  ===============*/
 .toggle-container {
     position: relative;
     top: 0;
@@ -269,14 +254,40 @@ h2{
     transition: all 0.6s ease-in-out;
     z-index: 1000;
     border-radius: 90px 30px 0 30px;
-    background: linear-gradient(to right, rgba(31, 71, 136, 0.85), rgba(0, 167, 105, 0.85));
+}
+/* Add two divs for backgrounds */
+.background1, .background2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.6s ease-in-out;
 }
 
+.background1 {
+    background: linear-gradient(to right, rgba(0, 167, 105, 0.45), rgba(31, 71, 136, 0.95));
+    opacity: 1;
+}
+
+.background2 {
+    background: linear-gradient(to right, rgba(31, 71, 136, 0.95), rgba(0, 167, 105, 0.45));
+    opacity: 0;
+}
+
+/* Toggle the opacity */
+.container.active .background1 {
+    opacity: 0;
+}
+
+.container.active .background2 {
+    opacity: 1;
+}
 .toggle-background-right {
     position: absolute;
     top: 340px;
-    scale: 45%;
-    left: 22%;
+    scale: 40%;
+    left: 20%;
     width: 100%;
     height: 100%;
     opacity: 0.85;
@@ -284,18 +295,18 @@ h2{
 .toggle-background-left {
     position: absolute;
     top: 340px;
-    scale: 45%;
-    left: -52%;
+    scale: 40%;
+    left: -48%;
     width: 100%;
     height: 100%;
     opacity: 0.85;
 }
-
 .container.active .toggle-container {
     transform: translateX(-100%);
     border-radius: 0 30px 90px 30px;
-}
+    /*background: linear-gradient(to right, rgba(0, 167, 105, 0.85), rgba(31, 71, 136, 0.85));*/
 
+}
 .toggle {
     background: rgba(31, 71, 136, 0.5);  /* Fallback color */
     height: 100%;
@@ -306,11 +317,9 @@ h2{
     transform: translateX(0);
     transition: all 0.6s ease-in-out;
 }
-
 .container.active .toggle {
     transform: translateX(50%);
 }
-
 .toggle-panel {
     position: absolute;
     width: 50%;
@@ -326,20 +335,16 @@ h2{
     transition: all 1s ease-in-out;
     border-radius: 150px;
 }
-
 .toggle-left {
     transform: translateX(-200%);
 }
-
 .container.active .toggle-left {
     transform: translateX(0);
 }
-
 .toggle-right {
     right: 0;
     transform: translateX(0);
 }
-
 .container.active .toggle-right {
     transform: translateX(200%);
 }
