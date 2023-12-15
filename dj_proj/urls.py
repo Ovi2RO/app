@@ -17,6 +17,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from accounts.views import landing_view
 """
 1. `from django.contrib import admin`: This import allows you to include the Django admin site 
 in your project.
@@ -28,6 +29,7 @@ include other URL configurations.
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', landing_view, name='landing_view'),
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('accounts.urls')),
     path('home/', include('home.urls')),

@@ -32,7 +32,7 @@ This is a function-based view that renders the "landing_page.html" template.
 
 class UserSigninView(LoginView):
     template_name = 'account/signin_signup.html'
-    success_url = '/'
+    success_url = reverse_lazy('home')
 
     def get_form_class(self):
         return CustomLoginForm  # set remember=True by default
