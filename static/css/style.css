@@ -94,6 +94,14 @@ body {
     margin-left: 10px;
     text-decoration: none;
 }
+.nav-item img{
+    scale: 1;
+    height: auto;
+    width: 80px;
+}
+.nav-item img:hover{
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.50);
+}
 
 .navbar-button {
     display: inline-block;
@@ -109,12 +117,14 @@ body {
     color: #fff;
 }
 
-.logo-img {
-    width: 70px;
-    height: auto;
-  }
+
 
 /* signin/signup page styling */
+.container-fluid{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .test {
     margin: 0;
     padding: 0;

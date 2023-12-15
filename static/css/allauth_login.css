@@ -266,12 +266,12 @@ h2{
 }
 
 .background1 {
-    background: linear-gradient(to right, rgba(0, 167, 105, 0.45), rgba(31, 71, 136, 0.95));
+    background: linear-gradient(to right, rgba(0, 167, 105, 0.55), rgba(31, 71, 136, 0.95));
     opacity: 1;
 }
 
 .background2 {
-    background: linear-gradient(to right, rgba(31, 71, 136, 0.95), rgba(0, 167, 105, 0.45));
+    background: linear-gradient(to right, rgba(31, 71, 136, 0.95), rgba(0, 167, 105, 0.55));
     opacity: 0;
 }
 
@@ -308,7 +308,7 @@ h2{
 
 }
 .toggle {
-    background: rgba(31, 71, 136, 0.5);  /* Fallback color */
+    /*background: rgba(31, 71, 136, 0.5);  !* Fallback color *!*/
     height: 100%;
     color: #fff;
     position: relative;
@@ -347,4 +347,58 @@ h2{
 }
 .container.active .toggle-right {
     transform: translateX(200%);
+}
+
+/* navbar styling */
+.container-fluid{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #6f6f6f30;
+    padding: 10px;
+    z-index: 9999;
+}
+
+.navbar .align-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.navbar a {
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.navbar-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #ddd;
+    color: #333;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-button:hover {
+    background-color: #aaa;
+    color: #fff;
+}
+
+.nav-item img{
+    scale: 1;
+    height: auto;
+    width: 80px;
+}
+.nav-item img:hover{
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.50);
 }
