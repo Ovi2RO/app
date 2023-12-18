@@ -7,6 +7,7 @@ post but user can only delete their own posts
 - [views] user should be able to view the marketplace but not access create view if not logged in
 - [detail view] the image should be visible here
 - [model] make it possible to upload several images
+- [feature] auction mode where you can post bids for an item
 x [model] make the category a list of options
 x [model] make image upload work
 

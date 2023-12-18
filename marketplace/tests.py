@@ -34,10 +34,10 @@ class MarketplaceItemPostListViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No posts found.")
         self.assertQuerysetEqual(response.context["marketposts"], [])
-    
+
     def test_post_w_image(self):
         with open("./media/images/megaphone.jpg", "rb") as file:
-            
+            pass
 
         post = MarketplaceItemPost.objects.create(
             title="Test post",
@@ -46,8 +46,3 @@ class MarketplaceItemPostListViewTest(TestCase):
             location="Test location",
             category="technology",
         )
-
-
-
-
-        
