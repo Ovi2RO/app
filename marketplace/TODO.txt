@@ -2,12 +2,12 @@ WRITE:
 - [tests] write tests
 - [permissions] make it so that a moderator can delete any
 post but user can only delete their own posts
-- user should be able to filter by their own posts
-- when user is under their own posts they should click on the button to delete and delete without being redirected
+- [feature] user should be able to filter by their own posts
+- [feature] when user is under their own posts they should click on the button to delete and delete without being redirected
 - [views] user should be able to view the marketplace but not access create view if not logged in
-- [detail view] the image should be visible here
 - [model] make it possible to upload several images
 - [feature] auction mode where you can post bids for an item
+x [detail view] the image should be visible here
 x [model] make the category a list of options
 x [model] make image upload work
 

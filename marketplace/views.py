@@ -6,7 +6,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-
+from django.contrib.auth.mixins import UserPassesTestMixin
 from .models import MarketplaceItemPost
 from .forms import CreateMarketplacePostForm
 
@@ -41,12 +41,13 @@ class MarketplaceUpdateView(UpdateView):
         "price",
         "location",
         "category",
-        # "image",
+        "image",
     ]
     success_url = "/marketplace/"
 
 
-class MarketplaceDeleteView(DeleteView):
+class MarketplaceDeleteView(UserPassesTestMixin, DeleteView):
     model = MarketplaceItemPost
     template_name = "marketplace/marketplace_delete.html"
     success_url = "/marketplace/"
+

@@ -11,6 +11,9 @@
         <div>
             <h1>{{ marketpost.title }}</h1>
             <h3>Sold for: {{ marketpost.price }}</h3>
+            <p>
+                <img src="{{ marketpost.image.url }}" class="thumbnail">
+            </p>
             <p>Sold by: {{ marketpost.author }}</p>
             <p>Find more like these under: {{ marketpost.category }}</p>
             <p>{{ marketpost.description }}</p>
