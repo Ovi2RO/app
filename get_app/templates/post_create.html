@@ -1,0 +1,14 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
+
+<h1>Create a post</h1>
+
+<div>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Create">
+    </form>
+</div>
+
+{% endblock %}

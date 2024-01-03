@@ -18,6 +18,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from accounts.views import landing_view
+from django.conf import settings
+from django.conf.urls.static import static
 """
 1. `from django.contrib import admin`: This import allows you to include the Django admin site 
 in your project.
@@ -34,7 +36,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('home/', include('home.urls')),
     path('test/', include('A_test_post_app.urls')),     #to be removed
-]
+    path('parenting/',include('get_app.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 """
 `path('admin/', admin.site.urls)`: This URL pattern maps the '/admin/' URL to the Django admin site. 
 It allows you to access the admin interface and perform administrative tasks.

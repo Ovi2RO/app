@@ -1,0 +1,20 @@
+<!-- {% extends "base.html" %} -->
+{% extends "accounts/base.html" %}
+
+{% block content %}
+
+<h1>Edit post</h1>
+
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{form.as_p}}
+    {% if form.instance.image %}
+        <p>Image:</p>
+        <img src="{{form.instance.image.url}}" alt="image">
+    {% endif %}
+    <div>
+        <button type="submit">Save</button>
+        <a href="{% url 'post-detail' post.pk %}">Cancel</a>
+    </div>
+</form>
+
+{% endblock %}

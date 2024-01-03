@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'rest_framework',
+    'get_app',
     
     'accounts',
     'home',
@@ -146,6 +147,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
+
+MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_URL = '/media/'
+
+
 """
 1. STATIC_URL = 'static/': This setting defines the base URL for serving static files in your Django project. 
 The value `'static/'` specifies that static files will be served from URLs that start with 'static/'.
