@@ -35,7 +35,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('accounts.urls')),
     path('home/', include('home.urls')),
-    path('test/', include('A_test_post_app.urls')),     #to be removed
+    #path('test/', include('A_test_post_app.urls')),     #to be removed
     path('parenting/',include('get_app.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 """
