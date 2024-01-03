@@ -9,6 +9,7 @@ from django.views.generic import (
 from django.contrib.auth.mixins import UserPassesTestMixin
 from .models import MarketplaceItemPost
 from .forms import CreateMarketplacePostForm
+from .mixins import AuthorOrModeratorMixin
 
 # Create your views here.
 
@@ -32,7 +33,7 @@ class MarketplaceCreateView(CreateView):
     success_url = "/marketplace/"
 
 
-class MarketplaceUpdateView(UpdateView):
+class MarketplaceUpdateView(AuthorOrModeratorMixin, UpdateView):
     model = MarketplaceItemPost
     template_name = "marketplace/marketplace_update.html"
     fields = [
@@ -46,8 +47,7 @@ class MarketplaceUpdateView(UpdateView):
     success_url = "/marketplace/"
 
 
-class MarketplaceDeleteView(UserPassesTestMixin, DeleteView):
+class MarketplaceDeleteView(AuthorOrModeratorMixin, DeleteView):
     model = MarketplaceItemPost
     template_name = "marketplace/marketplace_delete.html"
     success_url = "/marketplace/"
-
