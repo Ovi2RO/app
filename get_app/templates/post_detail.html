@@ -1,4 +1,3 @@
-<!-- {% extends "base.html" %} -->
 {% extends "accounts/base.html" %}
 
 {% block content %}
@@ -26,11 +25,15 @@
             <hr>
             <strong>Author: {{comment_data.comment.author}}</strong>
             <p>Comment: {{comment_data.comment.content}}</p>
-            <form method="post" action="{% url 'post-detail' post.id %}">
-                {% csrf_token %}
-                <input type="hidden" name="delete_comment_id" value="{{ comment_data.comment.id }}">
-                <button type="submit">Delete</button>
-            </form>
+
+            {% if user == post.author or user.is_staff or user == comment_data.comment.author %}
+                <form method="post" action="{% url 'post-detail' post.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="delete_comment_id" value="{{ comment_data.comment.id }}">
+                    <button type="submit">Delete</button>
+                </form>
+            {% endif %}
+
             <br>
             <p>Replies:</p>
             <div class="reply">
@@ -38,11 +41,14 @@
                 <div>
                     <strong>Author: {{reply.author}}</strong>
                     <p>Comment: {{reply.content}}</p>
-                    <form method="post" action="{% url 'post-detail' post.id %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="delete_reply_id" value="{{ reply.id }}">
-                        <button type="submit">Delete</button>
-                    </form>
+
+                    {% if user == post.author or user.is_staff or user == comment_data.comment.author %}
+                        <form method="post" action="{% url 'post-detail' post.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="delete_reply_id" value="{{ reply.id }}">
+                            <button type="submit">Delete</button>
+                        </form>
+                    {% endif %}
                 </div>
             {% empty %}
                 <p>There are no replies</p>
@@ -62,10 +68,18 @@
 {% empty %}
     <p>There are no comments</p>
 {% endfor %}
-<a href="{% url 'post-update' post.pk %}">Update</a>
-<a href="{% url 'post-delete' post.pk %}">Delete</a>
+    {% if user.is_authenticated %}
+        {% if user == post.author or user.is_staff %}
+            <a href="{% url 'post-update' post.pk %}">Update</a>
+            <a href="{% url 'post-delete' post.pk %}">Delete</a>
+        {% endif %}
+    {% endif %}
 {% endblock %}
-{% include "delete_comment.html" %}
+{% if user.is_authenticated %}
+    {% if user == post.author or user.is_staff %}
+        {% include "delete_comment.html" %}
+    {% endif %}
+{% endif %}
 
 
 
