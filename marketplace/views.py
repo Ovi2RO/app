@@ -1,3 +1,4 @@
+from django import dispatch
 from django.shortcuts import render
 from django.views.generic import (
     ListView,
@@ -10,22 +11,28 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from .models import MarketplaceItemPost
 from .forms import CreateMarketplacePostForm
 from .mixins import AuthorOrModeratorMixin
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
 
+@method_decorator(login_required, name="dispatch")
 class MarketplaceListView(ListView):
     model = MarketplaceItemPost
     template_name = "marketplace/marketplace_list.html"
     context_object_name = "marketposts"
 
 
+@method_decorator(login_required, name="dispatch")
 class MarketplaceDetailView(DetailView):
     model = MarketplaceItemPost
     template_name = "marketplace/marketplace_detail.html"
     context_object_name = "marketpost"
 
 
+@method_decorator(login_required, name="dispatch")
 class MarketplaceCreateView(CreateView):
     model = MarketplaceItemPost
     form_class = CreateMarketplacePostForm
@@ -33,7 +40,15 @@ class MarketplaceCreateView(CreateView):
     success_url = "/marketplace/"
 
 
-class MarketplaceUpdateView(AuthorOrModeratorMixin, UpdateView):
+@method_decorator(login_required, name="dispatch")
+@method_decorator(
+    user_passes_test(
+        lambda u: u.is_staff
+        or u == get_object_or_404(MarketplaceItemPost, pk=self.kwargs["pk"]).author
+    ),
+    name="dispatch",
+)
+class MarketplaceUpdateView(UpdateView):
     model = MarketplaceItemPost
     template_name = "marketplace/marketplace_update.html"
     fields = [
@@ -47,7 +62,15 @@ class MarketplaceUpdateView(AuthorOrModeratorMixin, UpdateView):
     success_url = "/marketplace/"
 
 
-class MarketplaceDeleteView(AuthorOrModeratorMixin, DeleteView):
+@method_decorator(login_required, name="dispatch")
+@method_decorator(
+    user_passes_test(
+        lambda u: u.is_staff
+        or u == get_object_or_404(MarketplaceItemPost, pk=self.kwargs["pk"]).author
+    ),
+    name="dispatch",
+)
+class MarketplaceDeleteView(DeleteView):
     model = MarketplaceItemPost
     template_name = "marketplace/marketplace_delete.html"
     success_url = "/marketplace/"
