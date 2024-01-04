@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
+from dj_proj.mixins import AuthorOrStaffRequiredMixin
 
 
 @method_decorator(login_required, name='dispatch')      
@@ -127,8 +128,8 @@ handling file uploads, and redirecting the user to a specified URL after success
   
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(user_passes_test(lambda u: u.is_staff or u == u.object.author), name='dispatch')
-class PostUpdateView(UpdateView):
+#@method_decorator(user_passes_test(lambda u: u.is_staff or u == u.post.author), name='dispatch')
+class PostUpdateView(AuthorOrStaffRequiredMixin, UpdateView):
     model = Post
     fields = ["title", "description", "image"]
     template_name = "post_update.html"
@@ -187,8 +188,8 @@ Finally, it calls `super().form_valid(form)` to save the form and perform any ad
     
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(user_passes_test(lambda u: u.is_staff or u == u.object.author), name='dispatch')
-class PostDeleteView(DeleteView):
+#@method_decorator(user_passes_test(lambda u: u.is_staff or u == u.object.author), name='dispatch')
+class PostDeleteView(AuthorOrStaffRequiredMixin, DeleteView):
     model = Post
     template_name = "post_delete.html"
     success_url = reverse_lazy("post-list")
