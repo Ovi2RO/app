@@ -10,11 +10,10 @@ from django.views.generic import (
 from django.contrib.auth.mixins import UserPassesTestMixin
 from .models import MarketplaceItemPost
 from .forms import CreateMarketplacePostForm
-from .mixins import AuthorOrModeratorMixin
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import get_object_or_404
-from ..dj_proj.mixins import AuthorOrStaffRequiredMixin
+from dj_proj.mixins import AuthorOrStaffRequiredMixin
 
 # Create your views here.
 
