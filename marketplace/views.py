@@ -14,6 +14,7 @@ from .mixins import AuthorOrModeratorMixin
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import get_object_or_404
+from ..dj_proj.mixins import AuthorOrStaffRequiredMixin
 
 # Create your views here.
 
@@ -41,14 +42,7 @@ class MarketplaceCreateView(CreateView):
 
 
 @method_decorator(login_required, name="dispatch")
-@method_decorator(
-    user_passes_test(
-        lambda u: u.is_staff
-        or u == get_object_or_404(MarketplaceItemPost, pk=self.kwargs["pk"]).author
-    ),
-    name="dispatch",
-)
-class MarketplaceUpdateView(UpdateView):
+class MarketplaceUpdateView(AuthorOrStaffRequiredMixin, UpdateView):
     model = MarketplaceItemPost
     template_name = "marketplace/marketplace_update.html"
     fields = [
@@ -63,14 +57,7 @@ class MarketplaceUpdateView(UpdateView):
 
 
 @method_decorator(login_required, name="dispatch")
-@method_decorator(
-    user_passes_test(
-        lambda u: u.is_staff
-        or u == get_object_or_404(MarketplaceItemPost, pk=self.kwargs["pk"]).author
-    ),
-    name="dispatch",
-)
-class MarketplaceDeleteView(DeleteView):
+class MarketplaceDeleteView(AuthorOrStaffRequiredMixin, DeleteView):
     model = MarketplaceItemPost
     template_name = "marketplace/marketplace_delete.html"
     success_url = "/marketplace/"

@@ -35,17 +35,15 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('accounts.urls')),
     path('home/', include('home.urls')),
-    path('accounts/', include('allauth.urls')),     # allAuth
     path('marketplace/', include('marketplace.urls')),
 
     path('test/', include('A_test_post_app.urls')),     #way
+    path('parenting/', include('get_app.urls')),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # this line allows images to show up in the browser during development
     #path('test/', include('A_test_post_app.urls')),     #to be removed
-    path('parenting/',include('get_app.urls')),
-+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 """
 `path('admin/', admin.site.urls)`: This URL pattern maps the '/admin/' URL to the Django admin site. 
 It allows you to access the admin interface and perform administrative tasks.
