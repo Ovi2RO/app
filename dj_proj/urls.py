@@ -45,7 +45,7 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # this line allows images to show up in the browser during development
     #path('test/', include('A_test_post_app.urls')),     #to be removed
     path('parenting/',include('get_app.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
++ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 """
 `path('admin/', admin.site.urls)`: This URL pattern maps the '/admin/' URL to the Django admin site. 
 It allows you to access the admin interface and perform administrative tasks.
