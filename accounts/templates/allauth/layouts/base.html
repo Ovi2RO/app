@@ -1,0 +1,102 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/allauth_login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/allauth_base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <script
+            src="https://kit.fontawesome.com/64d58efce2.js"
+            crossorigin="anonymous"
+    ></script>
+
+    <title>
+        {% block head_title %}
+        {% endblock head_title %}
+    </title>
+    {% block extra_head %}
+    {% endblock extra_head %}
+</head>
+
+<body>
+
+{% block body %}
+    {% if messages %}
+        <div>
+            <strong>{% trans "Messages:" %}</strong>
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>{% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    {% block menu %}
+    <div>
+        <strong>{% trans "Menu:" %}</strong>
+        <ul>
+            {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'account_email' %}">{% trans "Change Email" %}</a>
+                </li>
+                <li>
+                    <a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
+                </li>
+                <li>
+                    <a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+    {% endblock menu %}
+
+    {% block navbar %}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                {% if user.is_authenticated %}
+                    <div class="navbar-nav">
+                        <a href="{% url 'home' %}" class="nav-item">
+                            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo-img">
+                        </a>
+                        <a href="{% url 'test-post-list' %}"
+                           class="navbar-button nav-item">TestPosts</a> {% comment %}  way {% endcomment %}
+                    </div>
+
+                    <div class="align-right">
+                        <a class="nav-item">Hello <strong>{{ user.username }}</strong></a>
+                        <a class="navbar-button" href="{% url 'account_signout' %}">LogOut</a>
+                    </div>
+                {% else %}
+                    <div class="navbar-nav">
+                        <a href="{% url 'landing_view' %}" class="nav-item">
+                            <img src="{% static 'images/logo.png' %}" alt="Logo""
+                                 class="logo-img">
+                        </a>
+                    </div>
+
+                {% endif %}
+            </div>
+        </nav>
+    {% endblock navbar %}
+
+
+    {% block content %}
+    {% endblock content %}
+{% endblock body %}
+{% block extra_body %}
+{% endblock extra_body %}
+
+<script src="{% static 'js/login_toggle.js' %}"></script>
+
+</body>
+</html>

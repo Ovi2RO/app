@@ -1,0 +1,89 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
+
+<h1>{{post.title}}</h1>
+
+{% if post.image %}
+    <img src="{{post.image.url}}" style="width:50px; height:auto">
+{% endif%}
+
+<p>Desctiption: {{post.description}}</p>
+<p>Author: {{post.author}}</p>
+<br>
+<p>Comments:</p>
+
+<h3>Add a new comment:</h3>
+<form method="post">{% csrf_token %}
+    <textarea name="content" rows="3" cols="20"></textarea>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+{% for comment_data in comments %}
+        <div class="comment">
+            <hr>
+            <strong>Author: {{comment_data.comment.author}}</strong>
+            <p>Comment: {{comment_data.comment.content}}</p>
+
+            {% if user == post.author or user.is_staff or user == comment_data.comment.author %}
+                <form method="post" action="{% url 'post-detail' post.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="delete_comment_id" value="{{ comment_data.comment.id }}">
+                    <button type="submit">Delete</button>
+                </form>
+            {% endif %}
+
+            <br>
+            <p>Replies:</p>
+            <div class="reply">
+                {% for reply in comment_data.replies %}
+                <div>
+                    <strong>Author: {{reply.author}}</strong>
+                    <p>Comment: {{reply.content}}</p>
+
+                    {% if user == post.author or user.is_staff or user == comment_data.comment.author %}
+                        <form method="post" action="{% url 'post-detail' post.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="delete_reply_id" value="{{ reply.id }}">
+                            <button type="submit">Delete</button>
+                        </form>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <p>There are no replies</p>
+            {% endfor %}
+            <hr>
+            <h4>Reply to this comment:</h4>
+            <form method="post">{% csrf_token %}
+                <input type="hidden" name="parent_comment_id" value="{{comment_data.comment.id}}">
+                <textarea name="content" rows="3" cols="20"></textarea>
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+            </div>
+            <hr>
+            <hr>
+        </div>
+{% empty %}
+    <p>There are no comments</p>
+{% endfor %}
+    {% if user.is_authenticated %}
+        {% if user == post.author or user.is_staff %}
+            <a href="{% url 'post-update' post.pk %}">Update</a>
+            <a href="{% url 'post-delete' post.pk %}">Delete</a>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+{% if user.is_authenticated %}
+    {% if user == post.author or user.is_staff %}
+        {% include "delete_comment.html" %}
+    {% endif %}
+{% endif %}
+
+
+
+
+
+
+

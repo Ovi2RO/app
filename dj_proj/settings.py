@@ -31,23 +31,25 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "rest_framework",
-    "accounts",
-    "home",
-    "marketplace.apps.MarketplaceConfig",
-    "django.contrib.sites",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "allauth.socialaccount.providers.google",
-    "crispy_forms",
-    "A_test_post_app",
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    
+    'accounts',
+    'home',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'crispy_forms',
+
+    'A_test_post_app',
 ]
 """
 'accounts': This is a custom app specific to your project that likely handles user accounts and related 
@@ -144,6 +146,8 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
     BASE_DIR / "marketplace/static",
 ]
+MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_URL = '/media/'
 """
 1. STATIC_URL = 'static/': This setting defines the base URL for serving static files in your Django project. 
 The value `'static/'` specifies that static files will be served from URLs that start with 'static/'.
@@ -170,6 +174,16 @@ SOCIALACCOUNT_PROVIDERS = {
         },
         "OAUTH_PKCE_ENABLED": True,
     },
+    'github': {
+        'SCOPE': [
+            'user',
+            'repo',
+            'read:org',
+        ],
+        'AUTH_PARAMS': {
+            'allow_signup': 'true'
+        }
+    },
 }
 
 LOGIN_REDIRECT_URL = "home"
@@ -180,3 +194,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+LOGIN_URL = 'account_login'

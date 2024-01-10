@@ -1,0 +1,31 @@
+{% load allauth socialaccount %}
+{% get_providers as socialaccount_providers %}
+{% if socialaccount_providers %}
+    <div class="provider-list">
+        {% for provider in socialaccount_providers %}
+            {% if provider.id == "openid" %}
+                {% for brand in provider.get_brands %}
+                    {% provider_login_url provider openid=brand.openid_url process=process as href %}
+                    <a href="{{ href }}" class="provider-icon {{ provider.id }}">
+                        <!-- Icon for OpenID provider will go here if you have one -->
+                    </a>
+                {% endfor %}
+            {% else %}
+                {% provider_login_url provider process=process scope=scope auth_params=auth_params as href %}
+                <div class="social-icons">
+                    <a href="{{ href }}" class="icon {{ provider.id }}">
+                        {% if provider.id == "google" %}
+                            <i class="fa-brands fa-google"></i>
+                        {% elif provider.id == "facebook" %}
+                            <i class="fa-brands fa-facebook-f"></i>
+                        {% elif provider.id == "github" %}
+                            <i class="fa-brands fa-github"></i>
+                        {% elif provider.id == "linkedin" %}
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        {% endif %}
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}

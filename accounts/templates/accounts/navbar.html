@@ -12,22 +12,22 @@
           <a href="{% url 'home' %}" class="nav-item">
             <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo-img">
           </a>
-          <a href="{% url 'test-post-list' %}" class="navbar-button nav-item">TestPosts</a>    {% comment %}  way {% endcomment %}
+          <a href="{% url 'post-list' %}" class="navbar-button nav-item">Parenting</a>
         </div>
 
         <div class="align-right">
           <a class="nav-item">Hello <strong>{{ user.username }}</strong></a>
-          <a class="navbar-button" href="{% url 'signout' %}">LogOut</a>
+          <a class="navbar-button" href="{% url 'account_signout' %}">LogOut</a>
         </div>
       {% else %}
         <div class="navbar-nav">
           <a href="{% url 'landing_view' %}" class="nav-item">
-            <img src="{% static 'images/logo.png' %}" alt="Logo" style="width: 70px; height: auto;" class="logo-img">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo-img">
           </a>
         </div>
 
         <div class="align-right">
-          <a class="navbar-button" href="{% url 'signin' %}">Join!</a>
+          <a class="navbar-button" href="{% url 'account_login' %}">Join!</a>
         </div>
       {% endif %}
     </div>

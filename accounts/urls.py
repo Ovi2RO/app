@@ -1,19 +1,18 @@
 from django.urls import path
-from .views import landing_view, SignInView, SignOutView, SignUpView
+from .views import *
 """
 1. `from django.urls import path`: This import is used to define URL patterns in Django.
 
-2. `from .views import landing_view, SignInView, SignOutView, SignUpView`: These imports 
-bring in the views (`landing_view`, `SignInView`, `SignOutView`, `SignUpView`) from the 
-current package (module).
+2. `from .views import *`: This import is used to import all the views from the `views.py` file.
 """
 
 
 urlpatterns = [
-    path('', landing_view, name='landing_view'),
-    path('signin/', SignInView.as_view(), name='signin'),
-    path('signup/', SignUpView.as_view(), name='signup'),
-    path('signout/', SignOutView.as_view(), name='signout'),
+    path('signout/', UserLogoutView.as_view(), name='account_signout'),
+    path('signin/', UserSigninView.as_view(), name='account_login'),
+    path('signup/', UserSignupView.as_view(), name='account_signup'),
+    path('password/reset/', UserPasswordResetView.as_view(), name='account_password_reset'),
+    path('password/reset/done/', UserPasswordResetDoneView.as_view(), name='account_password_reset_done'),
 ]
 
 """

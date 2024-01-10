@@ -15,7 +15,7 @@ body {
 }
 
 .thing2 {
-    background-image: url(/static/images/online_comunity.jpeg);
+    background-image: url(/static/images/market.jpg);
     -webkit-background-size: cover;
     background-size: cover;
     display: table;
@@ -23,9 +23,12 @@ body {
     height: 100vh;
     width: 100%;
 }
+.thing2 * {
+    color: black;
+}
 
 .thing3 {
-    background-image: url(/static/images/outdoors_community.jpg);
+    background-image: url(/static/images/tennis.jpg);
     -webkit-background-size: cover;
     background-size: cover;
     display: table;
@@ -36,7 +39,7 @@ body {
 }
 
 .thing4 {
-    background-image: url(/static/images/together.jpg);
+    background-image: url(/static/images/parenthood.jpg);
     -webkit-background-size: cover;
     background-size: cover;
     display: table;
@@ -47,7 +50,7 @@ body {
 }
 
 .thing5 {
-    background-image: url(/static/images/more.jpg);
+    background-image: url(/static/images/team.jpg);
     -webkit-background-size: cover;
     background-size: cover;
     display: table;
@@ -71,7 +74,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     position: fixed;
     top: 0;
     left: 0;
@@ -92,6 +94,14 @@ body {
     margin-left: 10px;
     text-decoration: none;
 }
+.nav-item img{
+    scale: 1;
+    height: auto;
+    width: 80px;
+}
+.nav-item img:hover{
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.50);
+}
 
 .navbar-button {
     display: inline-block;
@@ -107,12 +117,14 @@ body {
     color: #fff;
 }
 
-.logo-img {
-    width: 70px;
-    height: auto;
-  }
+
 
 /* signin/signup page styling */
+.container-fluid{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .test {
     margin: 0;
     padding: 0;

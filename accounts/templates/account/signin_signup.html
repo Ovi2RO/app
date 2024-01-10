@@ -1,0 +1,118 @@
+{% extends "account/base_entrance.html" %}
+{% load static %}
+{% load i18n %}
+{% load allauth account socialaccount %}
+{% block head_title %}
+    {% trans "Sign In" %}
+{% endblock head_title %}
+
+{% block menu %}
+{% endblock menu %}
+
+{% block content %}
+    <div class="container" id="container">
+        <div class="form-container sign-in">
+            <div class="form-block">
+                <div class="form-header">
+                    {% element h1 %}
+                        {% trans "Sign In" %}
+                    {% endelement %}
+                    <p>
+                        {% blocktrans %}If you have not created an account yet, then please
+                            <a id="register-link">sign up</a> first.
+                        {% endblocktrans %}
+                    </p>
+                    <p>
+                        {% blocktrans %}Forgot password?{% endblocktrans %}
+                            <a href="{% url 'account_password_reset' %}">Reset password</a>
+                    </p>
+                </div>
+                {% url 'account_login' as login_url %}
+                {% element form form=form_login method="post" action=login_url tags="entrance,login" %}
+                    {% slot body %}
+                        {% csrf_token %}
+                        {% element fields form=form_login unlabeled=True %}
+                        {% endelement %}
+                        {% if redirect_field_value %}
+                            <input type="hidden"
+                                   name="{{ redirect_field_name }}"
+                                   value="{{ redirect_field_value }}"/>
+                        {% endif %}
+                    {% endslot %}
+                    {% slot actions %}
+                        {% element button type="submit" tags="prominent,login" %}
+                            {% trans "Sign In" %}
+                        {% endelement %}
+                    {% endslot %}
+                {% endelement %}
+                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+            </div>
+        </div>
+
+
+        {# ------------------------------------------------------------------------------ #}
+
+        <div class="form-container sign-up">
+            <div class="form-block">
+                <div class="form-header">
+                    {% element h1 %}
+                        {% trans "Sign Up" %}
+                    {% endelement %}
+                    <p>
+                        {% blocktrans %}Already have an account? Then please
+                            <a id="login-link">sign in</a>.
+                        {% endblocktrans %}
+                    </p>
+                </div>
+                {% url 'account_signup' as action_url %}
+                {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+                    {% slot body %}
+                        {% csrf_token %}
+                        {% element fields form=form_signup unlabeled=True %}
+                        {% endelement %}
+                        {% if redirect_field_value %}
+                            <input type="hidden"
+                                   name="{{ redirect_field_name }}"
+                                   value="{{ redirect_field_value }}"/>
+                        {% endif %}
+                    {% endslot %}
+                    {% slot actions %}
+                        {% element button tags="prominent,signup" type="submit" %}
+                            {% trans "Sign Up" %}
+                        {% endelement %}
+                    {% endslot %}
+                {% endelement %}
+                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+            </div>
+        </div>
+
+        {# ------------------------------------------------------------------------------ #}
+        <div class="toggle-container">
+            <div class="background1"></div>
+            <div class="background2"></div>
+
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details to use all of site features</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+
+                <div class="toggle-background-left">
+                    <img src="{% static 'images/handz-left.png' %}" alt="" class="background-image">
+                </div>
+
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Register with your personal details to use all of site features</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+
+                <div class="toggle-background-right">
+                    <img src="{% static 'images/handz-right.png' %}" alt="" class="background-image">
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}

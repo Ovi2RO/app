@@ -1,0 +1,33 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+
+<a href="{% url 'post-list'%}">List</a>		
+<a href="{% url 'post-create'%}">Create</a>	
+
+<form method="GET" action="{% url 'post-list' %}">
+    <input type="text" name="search_words" placeholder="Search for...">
+    <select name="search_field">
+        <option value="title">Title</option>
+        <option value="description">Description</option>
+    </select>
+    <input type="date" name="search_date" placeholder="Search for date...">
+    <button type="submit">Search</button>
+</form>
+
+
+
+
+
+
+<div>
+    {%for post in posts %}
+        <a href="{% url 'post-detail' post.id %}"><h3>{{post.title}}</h3></a>
+    {%endfor%}
+</div>
+
+{%endblock%}
