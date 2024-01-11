@@ -36,7 +36,7 @@ class MarketplaceItemPost(models.Model):
         choices=category_choices,
     )
     image = models.ImageField(
-        upload_to="images/",
+        upload_to="market_img/",
         null=True,
         blank=True,
     )
