@@ -1,0 +1,27 @@
+{% extends "accounts/base.html" %}
+
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <h1>Delete Post</h1>
+    <div>
+        <p>Are you sure?</p>
+        <p>Title: {{ post.title }}</p>
+        <p>Description: {{post.description}}</p>
+        <form method= "post"> 
+            {% csrf_token %}
+            <button type="submit">Confirm</button>
+            <a href="{% url 'laika-post-detail' post.pk %}">Cancel</a>
+        </form>
+
+    </div>
+    
+        
+    
+
+
+
+
+{% endblock %}

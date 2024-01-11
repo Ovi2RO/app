@@ -37,6 +37,7 @@ urlpatterns = [
     path('home/', include('home.urls')),
     #path('test/', include('A_test_post_app.urls')),     #to be removed
     path('parenting/',include('get_app.urls')),
+    path('laika/',include('laika.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 """
 `path('admin/', admin.site.urls)`: This URL pattern maps the '/admin/' URL to the Django admin site. 

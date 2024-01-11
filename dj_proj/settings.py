@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'rest_framework',
     'get_app',
+    'laika',
     
     'accounts',
     'home',
