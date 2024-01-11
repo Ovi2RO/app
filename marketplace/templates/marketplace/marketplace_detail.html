@@ -20,7 +20,7 @@
             <p>Where: {{ marketpost.location }}</p>
             <p>Posted on {{ marketpost.created_on }}</p>
         </div>
-        {% if user == post.author or user.is_staff %}
+        {% if user == marketpost.author or user.is_staff %}
             <div>
                 <button type="button"
                         onclick="location.href='{{ marketpost.get_update_url }}'">Edit post</button>
