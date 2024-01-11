@@ -20,9 +20,9 @@
                         <p>Price: {{ post.price }}</p>
                         <p>Posted on: {{ post.created_on }}</p>
                         <p>Description: {{ post.description }}</p>
-                        <p>
+                        {% if post.image %}
                             <img src="{{ post.image.url }}" class="thumbnail">
-                        </p>
+                        {% endif %}
                     </div>
                 </a>
             {% endfor %}

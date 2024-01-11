@@ -10,7 +10,7 @@
     <body>
         <div>
             <h2>Post item to sell</h2>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="Submit">

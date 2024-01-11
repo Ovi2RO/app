@@ -1,4 +1,9 @@
+import re
+from typing import Any
+from urllib import request
 from django import dispatch
+from django.forms.models import BaseModelForm
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import (
     ListView,
@@ -38,6 +43,21 @@ class MarketplaceCreateView(CreateView):
     form_class = CreateMarketplacePostForm
     template_name = "marketplace/marketplace_create.html"
     success_url = "/marketplace/"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    # def post(self, request, *args, **kwargs):
+    #     form = self.get_form()
+    #     print(form)
+
+    #     if "image" in request.POST:
+    #         form.files["add_image"] = request.POST["image"]
+    #     if form.is_valid():
+    #         return self.form_valid(form)
+    #     else:
+    #         return self.form_invalid(form)
 
 
 @method_decorator(login_required, name="dispatch")

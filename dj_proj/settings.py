@@ -31,27 +31,24 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-    
-    'get_app',
-    'accounts',
-    'home',
-    'marketplace',
-
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'crispy_forms',
-
-    'A_test_post_app',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
+    "get_app",
+    "accounts",
+    "home",
+    "marketplace",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    "crispy_forms",
+    "A_test_post_app",
 ]
 """
 'accounts': This is a custom app specific to your project that likely handles user accounts and related 
@@ -98,13 +95,13 @@ WSGI_APPLICATION = "dj_proj.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'app',
-        'USER': 'ovidiu',
-        'PASSWORD': 'dbadmin',
-        'HOST': '206.81.28.205',
-        'PORT': '5432',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "app",
+        "USER": "ovidiu",
+        "PASSWORD": "dbadmin",
+        "HOST": "206.81.28.205",
+        "PORT": "5432",
     }
 }
 
@@ -146,10 +143,8 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    BASE_DIR / "marketplace/static",
+    # BASE_DIR / "marketplace/static",
 ]
-MEDIA_ROOT = BASE_DIR/'media'
-MEDIA_URL = '/media/'
 """
 1. STATIC_URL = 'static/': This setting defines the base URL for serving static files in your Django project. 
 The value `'static/'` specifies that static files will be served from URLs that start with 'static/'.
@@ -176,15 +171,13 @@ SOCIALACCOUNT_PROVIDERS = {
         },
         "OAUTH_PKCE_ENABLED": True,
     },
-    'github': {
-        'SCOPE': [
-            'user',
-            'repo',
-            'read:org',
+    "github": {
+        "SCOPE": [
+            "user",
+            "repo",
+            "read:org",
         ],
-        'AUTH_PARAMS': {
-            'allow_signup': 'true'
-        }
+        "AUTH_PARAMS": {"allow_signup": "true"},
     },
 }
 
@@ -199,5 +192,5 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-LOGIN_URL = 'account_login'
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+LOGIN_URL = "account_login"
