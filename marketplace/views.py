@@ -48,17 +48,6 @@ class MarketplaceCreateView(CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-    # def post(self, request, *args, **kwargs):
-    #     form = self.get_form()
-    #     print(form)
-
-    #     if "image" in request.POST:
-    #         form.files["add_image"] = request.POST["image"]
-    #     if form.is_valid():
-    #         return self.form_valid(form)
-    #     else:
-    #         return self.form_invalid(form)
-
 
 @method_decorator(login_required, name="dispatch")
 class MarketplaceUpdateView(AuthorOrStaffRequiredMixin, UpdateView):

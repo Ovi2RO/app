@@ -15,14 +15,18 @@
                 <img src="{{ marketpost.image.url }}" class="thumbnail">
             </p>
             <p>Sold by: {{ marketpost.author }}</p>
-            <p>Find more like these under: {{ marketpost.category }}</p>
+            <p>Find more like these under: {{ marketpost.get_category_display }}</p>
             <p>{{ marketpost.description }}</p>
             <p>Where: {{ marketpost.location }}</p>
             <p>Posted on {{ marketpost.created_on }}</p>
         </div>
-        <button type="button"
-                onclick="location.href='{{ marketpost.get_update_url }}'">Edit post</button>
-        <button type="button"
-                onclick="location.href='{{ marketpost.get_delete_url }}'">Delete post</button>
+        {% if user == post.author or user.is_staff %}
+            <div>
+                <button type="button"
+                        onclick="location.href='{{ marketpost.get_update_url }}'">Edit post</button>
+                <button type="button"
+                        onclick="location.href='{{ marketpost.get_delete_url }}'">Delete post</button>
+            </div>
+        {% endif %}
     </body>
 </html>
