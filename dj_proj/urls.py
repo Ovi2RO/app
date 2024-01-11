@@ -36,7 +36,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('home/', include('home.urls')),
     path('marketplace/', include('marketplace.urls')),
-
+    path('laika/',include('laika.urls')),
     path('test/', include('A_test_post_app.urls')),     #way
     path('parenting/', include('get_app.urls')),
 ]

@@ -1,0 +1,40 @@
+{% extends "accounts/base.html" %}
+
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <a href="{% url 'laika-post-create' %}">Create</a>
+    <a href="{% url 'laika-profile' %}">Profile</a>
+
+    <form method="GET" action="{% url 'laika-post-list' %}">
+        <input type="text" name="search_words" placeholder="Search for...">
+        <select name="search_field">
+            <option value="title">Title</option>
+            <option value="description">Description</option>
+        </select>
+        <input type="date" name="search_date" placeholder="Search for date...">
+        <button type="submit">Search</button>
+    </form>
+
+    <div>
+        {% for post in posts %}
+            <a href= "{% url 'laika-post-detail' post.id %}"><strong>{{ post.title }}</strong></a>
+        {% empty %}
+            <p>No posts available</p>
+        {% endfor %}
+
+    </div>
+
+    
+
+    
+{% endblock %}
+
+
+
+
+
+
+

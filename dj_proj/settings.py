@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.google",
     "crispy_forms",
     "A_test_post_app",
+    'laika',
 ]
 """
 'accounts': This is a custom app specific to your project that likely handles user accounts and related 

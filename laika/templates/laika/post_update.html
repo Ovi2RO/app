@@ -1,0 +1,24 @@
+{% extends "accounts/base.html" %}
+
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <h1>Edit Post</h1>
+    
+    <div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            {% if form.instance.image %}
+                <p>Image:</p>
+                <img src="{{form.instance.image.url }}" alt="image">
+            {% endif %}
+            <div>
+                <button type="submit">Save</button>
+                <a href="{% url 'laika-post-detail' post.pk %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
