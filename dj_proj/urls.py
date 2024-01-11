@@ -17,9 +17,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings # import for images to show up in the browser
+from django.conf.urls.static import static # import for images to show up in the browser
 from accounts.views import landing_view
-from django.conf import settings
-from django.conf.urls.static import static
 """
 1. `from django.contrib import admin`: This import allows you to include the Django admin site 
 in your project.
@@ -35,10 +35,15 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('accounts.urls')),
     path('home/', include('home.urls')),
-    #path('test/', include('A_test_post_app.urls')),     #to be removed
-    path('parenting/',include('get_app.urls')),
+    path('marketplace/', include('marketplace.urls')),
     path('laika/',include('laika.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('test/', include('A_test_post_app.urls')),     #way
+    path('parenting/', include('get_app.urls')),
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # this line allows images to show up in the browser during development
+    #path('test/', include('A_test_post_app.urls')),     #to be removed
 """
 `path('admin/', admin.site.urls)`: This URL pattern maps the '/admin/' URL to the Django admin site. 
 It allows you to access the admin interface and perform administrative tasks.

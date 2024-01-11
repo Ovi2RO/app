@@ -1,0 +1,17 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+div {
+    border: 2px solid lightgreen;
+    padding: 15px;
+    background-color: lightsalmon;
+    margin-bottom: 20px;
+}
+
+.thumbnail {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 10px;
+}
