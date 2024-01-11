@@ -6,7 +6,9 @@ from .views import (
     MarketplaceCreateView,
     MarketplaceDeleteView,
     MarketplaceUpdateView,
+    MarketplaceSearchResultsView,
 )
+
 
 urlpatterns = [
     path("", MarketplaceListView.as_view(), name="marketplace_list"),
@@ -14,5 +16,5 @@ urlpatterns = [
     path("create/", MarketplaceCreateView.as_view(), name="marketplace_create"),
     path("delete_post/<int:pk>/", MarketplaceDeleteView.as_view(), name="marketplace_delete"),
     path("update_post/<int:pk>/", MarketplaceUpdateView.as_view(), name="marketplace_update"),
-    
+    path("search_results", MarketplaceSearchResultsView.as_view(), name="marketplace_search"),    
 ]

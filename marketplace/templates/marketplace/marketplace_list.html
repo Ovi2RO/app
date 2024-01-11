@@ -9,6 +9,11 @@
     </head>
     <body>
         <h1>Welcome to the marketplace</h1>
+
+        <form method="get" action="{% url "search_results" %}">
+            
+        </form>
+
         <button type="button"
                 onclick="location.href='{% url "marketplace_create" %}'">Create new post</button>
         {% if marketposts %}
