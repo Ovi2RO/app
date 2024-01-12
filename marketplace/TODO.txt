@@ -16,7 +16,8 @@ x [model] make the category a list of options
 x [model] make image upload work
 
 FIX:
-- [list view] newer posts should appear at the top
+- [home page] the page should have a button to redirect to my app
+- [list view] newer posts should appear at the top (ordering obj)
 - [create form] make form unsubmittable if I don't add a picture
 - [delete] can not delete views from the browser
 x [template] image display does not work

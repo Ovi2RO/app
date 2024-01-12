@@ -1,4 +1,3 @@
-import re
 from typing import Any
 from urllib import request
 from django import dispatch
@@ -19,6 +18,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import get_object_or_404
 from dj_proj.mixins import AuthorOrStaffRequiredMixin
+from django.urls import reverse
 
 # Create your views here.
 
@@ -84,3 +84,7 @@ class MarketplaceMyPostsView(ListView):
 
     def get_queryset(self):
         return super().get_queryset().filter(author=self.request.user)
+
+
+class MarketplaceUserMessagingView:
+    pass
