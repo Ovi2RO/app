@@ -9,11 +9,9 @@
     </head>
     <body>
         <h1>Welcome to the marketplace</h1>
-
-        <form method="get" action="{% url "search_results" %}">
-            
-        </form>
-
+        {% comment %} <form method="get" action="{% url "search_results" %}"></form> {% endcomment %}
+        <button type="button"
+                onclick="location.href='{% url "marketplace_my_posts" %}'">My posts</button>
         <button type="button"
                 onclick="location.href='{% url "marketplace_create" %}'">Create new post</button>
         {% if marketposts %}
@@ -25,9 +23,7 @@
                         <p>Price: {{ post.price }}</p>
                         <p>Posted on: {{ post.created_on }}</p>
                         <p>Description: {{ post.description }}</p>
-                        {% if post.image %}
-                            <img src="{{ post.image.url }}" class="thumbnail">
-                        {% endif %}
+                        {% if post.image %}<img src="{{ post.image.url }}" class="thumbnail">{% endif %}
                     </div>
                 </a>
             {% endfor %}

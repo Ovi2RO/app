@@ -1,13 +1,31 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My posts</title>
-</head>
-<body>
-    {% comment %} would be cool to write a line that makes the page {% endcomment %}
-    {% comment %} to which user the post belongs to like "Blister's posts" {% endcomment %}
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My posts</title>
+        <link rel="stylesheet" href="{% static "marketplace/css/style.css" %}">
+    </head>
+    <body>
+        {% comment %} would be cool to write a line that makes the page {% endcomment %}
+        {% comment %} to which user the post belongs to like "Blister's posts" {% endcomment %}
+        <h1>Your posts</h1>
+        {% if my_posts %}
+            {% for post in my_posts %}
+                <a href="{{ post.get_absolute_url }}">
+                    <div>
+                        <h3>{{ post.title }}</h3>
+                        <p>Seller: {{ post.author }}</p>
+                        <p>Price: {{ post.price }}</p>
+                        <p>Posted on: {{ post.created_on }}</p>
+                        <p>Description: {{ post.description }}</p>
+                        {% if post.image %}<img src="{{ post.image.url }}" class="thumbnail">{% endif %}
+                    </div>
+                </a>
+            {% endfor %}
+        {% else %}
+            <p>You haven't posted anything yet</p>
+        {% endif %}
+    </body>
 </html>
