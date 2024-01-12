@@ -18,5 +18,5 @@ urlpatterns = [
     path("delete_post/<int:pk>/", MarketplaceDeleteView.as_view(), name="marketplace_delete"),
     path("update_post/<int:pk>/", MarketplaceUpdateView.as_view(), name="marketplace_update"),
     path("search_results", MarketplaceSearchResultsView.as_view(), name="marketplace_search"),
-    path("my_posts/", MarketplaceMyPostsView.as_view(), name="marketplace_my_posts"),
+    path("my_posts/<str:username>/", MarketplaceMyPostsView.as_view(), name="marketplace_my_posts"),
 ]
