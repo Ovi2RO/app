@@ -74,3 +74,13 @@ class MarketplaceDeleteView(AuthorOrStaffRequiredMixin, DeleteView):
 @method_decorator(login_required, name="dispatch")
 class MarketplaceSearchResultsView(ListView):
     pass
+
+
+@method_decorator(login_required, name="dispatch")
+class MarketplaceMyPostsView(ListView):
+    model = MarketplaceItemPost
+    template_name = "marketplace/marketplace_my_posts.html"
+    context_object_name = "my_posts"
+
+    def get_queryset(self):
+        return super().get_queryset().filter(author=self.request.user)
