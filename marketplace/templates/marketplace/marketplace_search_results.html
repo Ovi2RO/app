@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search results</title>
+        <link rel="stylesheet" href="{% static "marketplace/css/style.css" %}">
+    </head>
+    <body>
+        <h1>Search results</h1>
+        <button type="button"
+                onclick="location.href='{% url "marketplace_my_posts" request.user.username %}'">My posts</button>
+        <button type="button"
+                onclick="location.href='{% url "marketplace_create" %}'">Create new post</button>
+        <form action="" method="GET">
+            {{ form.non_field_errors }}
+            <div>
+                <label for="{{ form.title.id_for_label }}">Search:</label>
+                {{ form.title }}
+                {{ form.title.errors }}
+            </div>
+            <div>
+                <label for="{{ form.user.id_for_label }}">User:</label>
+                {{ form.user }}
+                {{ form.user.errors }}
+            </div>
+            <div>
+                <label for="{{ form.category.id_for_label }}">Category:</label>
+                {{ form.category }}
+                {{ form.category.errors }}
+            </div>
+            <div>
+                <label for="{{ form.min_price.id_for_label }}">Minimum Price:</label>
+                {{ form.min_price }}
+                {{ form.min_price.errors }}
+            </div>
+            <div>
+                <label for="{{ form.max_price.id_for_label }}">Maximum Price:</label>
+                {{ form.max_price }}
+                {{ form.max_price.errors }}
+            </div>
+            <div>
+                <label for="{{ form.location.id_for_label }}">Item Location:</label>
+                {{ form.location }}
+                {{ form.location.errors }}
+            </div>
+            <div>
+                <label for="{{ form.init_post_date.id_for_label }}">Initial Date to Search From:</label>
+                {{ form.init_post_date }}
+                {{ form.init_post_date.errors }}
+            </div>
+            <div>
+                <label for="{{ form.final_post_date.id_for_label }}">Final Date to Search Up To:</label>
+                {{ form.final_post_date }}
+                {{ form.final_post_date.errors }}
+            </div>
+            <button type="submit">Search</button>
+        </form>
+        {% if posts %}
+            {% for post in posts %}
+                <a href="{{ post.get_absolute_url }}">
+                    <div>
+                        <h3>{{ post.title }}</h3>
+                        <p>Seller: {{ post.author }}</p>
+                        <p>Price: {{ post.price }}</p>
+                        <p>Posted on: {{ post.created_on }}</p>
+                        <p>Description: {{ post.description }}</p>
+                        {% if post.image %}<img src="{{ post.image.url }}" class="thumbnail">{% endif %}
+                    </div>
+                </a>
+            {% endfor %}
+        {% else %}
+            <p>No posts found.</p>
+        {% endif %}
+    </body>
+</html>

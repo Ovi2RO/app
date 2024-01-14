@@ -9,7 +9,8 @@
     </head>
     <body>
         <h1>Welcome to the marketplace</h1>
-        {% comment %} <form method="get" action="{% url "search_results" %}"></form> {% endcomment %}
+        <button type="button"
+                onclick="location.href='{% url "marketplace_search" %}'">Search for items</button>
         <button type="button"
                 onclick="location.href='{% url "marketplace_my_posts" request.user.username %}'">My posts</button>
         <button type="button"

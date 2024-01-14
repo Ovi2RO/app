@@ -20,6 +20,7 @@ class CreateMarketplacePostForm(forms.ModelForm):
 class SearchForm(forms.Form):
     # aux
     category_choices = [
+        ("", ""),
         ("technology", "Technology"),
         ("services", "Services"),
         ("vehicles", "Vehicles"),
