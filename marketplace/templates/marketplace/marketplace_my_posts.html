@@ -4,19 +4,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Marketplace</title>
+        <title>My posts</title>
         <link rel="stylesheet" href="{% static "marketplace/css/style.css" %}">
     </head>
     <body>
-        <h1>Welcome to the marketplace</h1>
-        <button type="button"
-                onclick="location.href='{% url "marketplace_search" %}'">Search for items</button>
-        <button type="button"
-                onclick="location.href='{% url "marketplace_my_posts" request.user.username %}'">My posts</button>
-        <button type="button"
-                onclick="location.href='{% url "marketplace_create" %}'">Create new post</button>
-        {% if marketposts %}
-            {% for post in marketposts %}
+        {% comment %} would be cool to write a line that makes the page {% endcomment %}
+        {% comment %} to which user the post belongs to like "Blister's posts" {% endcomment %}
+        <h1>Your posts</h1>
+        {% if my_posts %}
+            {% for post in my_posts %}
                 <a href="{{ post.get_absolute_url }}">
                     <div>
                         <h3>{{ post.title }}</h3>
@@ -29,7 +25,7 @@
                 </a>
             {% endfor %}
         {% else %}
-            <p>No posts found.</p>
+            <p>You haven't posted anything yet</p>
         {% endif %}
     </body>
 </html>

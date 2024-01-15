@@ -1,20 +1,27 @@
 WRITE:
+- [feature] search-bar (need to create a query set inside view)
+- [feature] messaging between users
+- [style] make it look pwetty UwU
 - [tests] write tests
-- [permissions] make it so that a moderator can delete any
-post but user can only delete their own posts
-- [feature] user should be able to filter by their own posts
-- [feature] when user is under their own posts they should click on the button to delete and delete without being redirected
-- [views] user should be able to view the marketplace but not access create view if not logged in
+- [documentation]
+- [feature] when user is under their own posts they should click on the button
+to delete and delete without being redirected
 - [model] make it possible to upload several images
 - [feature] auction mode where you can post bids for an item
+x [feature] user should be able to filter by their own posts
+x [views] user should be able to view the marketplace but not access create view if not logged in
+x [permissions] make it so that a moderator can delete any
+post but user can only delete their own posts
 x [detail view] the image should be visible here
 x [model] make the category a list of options
 x [model] make image upload work
 
 FIX:
-- [list view] newer posts should appear at the top
+- [search_results] test the search results, see if they work as planned
 - [create form] make form unsubmittable if I don't add a picture
-- [delete] can not delete views from the browser
+x [home page] the page should have a button to redirect to my app
+x [delete] can not delete posts from the browser
+x [list view] newer posts should appear at the top (ordering obj)
 x [template] image display does not work
 x [model] does not show location on detail view
 x [model] does not show created_on on detail view
