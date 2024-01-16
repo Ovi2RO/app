@@ -1,0 +1,12 @@
+{% extends 'tennis/tennis_base.html' %}
+
+{% block content %}
+  <h2>Update Post</h2>
+  <img src="{{ posts.image.url }}" alt="{{ posts.user_name }}'s Profile Picture">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update</button>
+  </form>
+  <a href="{%  url 'tennis-post-detail' post.id  %}">Cancel</a>
+{% endblock %}

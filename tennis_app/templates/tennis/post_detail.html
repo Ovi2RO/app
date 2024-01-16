@@ -1,0 +1,40 @@
+{% extends 'tennis/tennis_base.html' %}
+
+{% block content %}
+  <div class="post-detail">
+    <h1>{{ post.user_name }}'s Profile</h1>
+    <img src="{{ post.image.url }}" alt="{{ post.user_name }}'s Profile Picture">
+    <p><strong>Gender:</strong> {{ post.get_user_gender_display }}</p>
+    <p><strong>Birth Date:</strong> {{ post.birth_date }}</p>
+    <p><strong>Phone:</strong> {{ post.phone }}</p>
+    <p><strong>Email:</strong> {{ post.user_email }}</p>
+    <p><strong>Description:</strong> {{ post.description }}</p>
+    <p><strong>Play Date:</strong> {{ post.play_date }}</p>
+    <p><strong>Level:</strong> {{ post.get_level_display }}</p>
+    <p><strong>Language:</strong> {{ post.get_language_display }}</p>
+    <p><strong>Type:</strong> {{ post.type }}</p>
+    {% if post.club_name %}
+      <p><strong>Club Name:</strong> {{ post.club_name }}</p>
+    {% endif %}
+    <p><strong>Posted by:</strong> {{ post.author.username }}</p>
+    <p><strong>Posted on:</strong> {{ post.current_date }}</p>
+    <!-- Comments Section -->
+    <h2>Comments</h2>
+    {% for comment in comments %}
+      <p>{{ comment.text }} - Rank: {{ comment.rank }} - by {{ comment.author.username }}</p>
+    {% endfor %}
+
+    <!-- Comment Form -->
+    <h2>Add a Comment</h2>
+    <form method="post" action="{% url 'tennis-post-detail' pk=post.pk %}">
+      {% csrf_token %}
+      {{ comment_form.as_p }}
+      <button type="submit">Submit Comment</button>
+    </form>
+
+    <div>
+      <a href="{% url 'tennis-post-update' post.pk %}" class="btn btn-primary">Update</a>
+      <a href="{% url 'tennis-post-delete' post.pk %}" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
+{% endblock %}
