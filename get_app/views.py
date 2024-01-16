@@ -35,32 +35,24 @@ class PostListView(ListView):
         return queryset
     
 """
-By applying the `@login_required` decorator to the `dispatch` method of the `PostListView`, the view 
-will only be accessible to authenticated users. If an unauthenticated user tries to access the view, 
-they will be redirected to the login page.
+- `@method_decorator(login_required, name='dispatch')` is a method decorator that applies the 
+`login_required` decorator to the `dispatch` method of the `PostListView` class. This decorator 
+ensures that only authenticated users can access the view.
 
+- `PostListView` is a class-based view that inherits from `ListView`. It represents a view that 
+lists all the posts.
 
-The `model` attribute specifies the model class that the `ListView` should use to fetch the list 
-of objects. It is set to `Post`, which means the `ListView` will fetch all the `Post` 
-objects from the database.
+- `model = Post` specifies the model associated with the view, in this case, the `Post` model.
 
-The `template_name` attribute specifies the HTML template file that should be used to render the 
-list of objects. It is set to `"post_list.html"`, which means the `ListView` will use the `post_list.html` 
-template.
+- `template_name = "post_list.html"` specifies the template to use for rendering the view.
 
-The `context_object_name` attribute specifies the name of the context variable that will be used in the 
-template to access the list of objects. It is set to `"posts"`, which means the list of `Post` objects 
-will be available as `posts` in the template.
+- `context_object_name = "posts"` specifies the name of the variable to use in the template for the 
+list of posts.
 
-The `get_queryset()` method is overridden to provide custom filtering and sorting of the list of objects. 
-It first calls the parent class's `get_queryset()` method to get the default queryset. Then, it retrieves 
-the search parameters (`search_words`, `search_field`, and `search_date`) from the request's GET parameters.
-
-If `search_words` is provided, it filters the queryset based on the `search_field` (either "title" or 
-"description"). If `search_date` is provided, it filters the queryset based on the `created_at` field. If 
-neither `search_words` nor `search_date` is provided, it sets the queryset to fetch all `Post` objects.
-
-Finally, it returns the filtered queryset.
+- `get_queryset()` is a method that returns the queryset of posts to be displayed in the view. It 
+first calls the `get_queryset()` method of the parent class to get the default queryset. It then 
+filters the queryset based on the `search_words`, `search_field`, and `search_date` parameters obtained 
+from the request. If no search parameters are provided, it returns all the posts.
 """
     
 
@@ -87,48 +79,34 @@ class PostCreateView(CreateView):
             return self.form_invalid(form)
 
 """
-By applying the `@login_required` decorator to the `dispatch` method of the `PostListView`, the view 
-will only be accessible to authenticated users. If an unauthenticated user tries to access the view, 
-they will be redirected to the login page.
+- `@method_decorator(login_required, name='dispatch')` is a method decorator that applies the 
+`login_required` decorator to the `dispatch` method of the `PostCreateView` class. This decorator 
+ensures that only authenticated users can access the view.
 
-The `CreateView` class is a generic class-based view provided by Django. It is used for creating new 
-objects of a model.
+- `PostCreateView` is a class-based view that inherits from `CreateView`. It represents a view for 
+creating a new post.
 
-`PostCreateView` class inherits from `CreateView` and provides some additional functionality.
+- `model = Post` specifies the model associated with the view, in this case, the `Post` model.
 
-The `model` attribute specifies the model class that the `CreateView` should use to create a new object. 
-It is set to `Post`, which means the `CreateView` will create a new `Post` object.
+- `fields = ["title", "description", "image"]` specifies the fields of the model that will be included 
+in the form for creating a new post.
 
-The `fields` attribute specifies the form fields that should be displayed in the template for creating a new 
-object. It is set to `["title", "description", "image"]`, which means the form will have fields for `title`, 
-`description`, and `image`.
+- `template_name = "post_create.html"` specifies the template to use for rendering the view.
 
-The `template_name` attribute specifies the HTML template file that should be used to render the form for 
-creating a new object. It is set to `"post_create.html"`, which means the `CreateView` will use the 
-`post_create.html` template.
+- `success_url = reverse_lazy("post-list")` specifies the URL to redirect to after a successful form 
+submission. It redirects to the "post-list" URL.
 
-The `success_url` attribute specifies the URL to which the user should be redirected after successfully 
-creating a new object. It is set to `reverse_lazy("post-list")`, which means the user will be redirected to 
-the URL named `"post-list"`.
+- `form_valid(form)` is a method that is called when the form is submitted and valid. It sets the author 
+of the post to the currently authenticated user and then calls the `form_valid()` method of the parent class.
 
-The `form_valid()` method is overridden to provide additional logic when the form is valid. It sets the 
-`author` field of the `Post` object to the currently logged-in user (`self.request.user`) before saving the form.
-
-The `post()` method is overridden to handle the POST request for creating a new object. It first gets the 
-form using `self.get_form()`. Then, it checks if the `add_image` key is present in the `request.FILES` 
-dictionary. If it is, it assigns the uploaded image file to the `image` field of the form.
-
-Next, it checks if the form is valid. If the form is valid, it calls `self.form_valid(form)` to save the 
-form and perform any additional logic. If the form is not valid, it calls `self.form_invalid(form)` to handle 
-the invalid form.
-
-This code allows the user to create a new `Post` object by displaying a form with specified fields, 
-handling file uploads, and redirecting the user to a specified URL after successful creation.
+- `post(self, request, *args, **kwargs)` is a method that is called when a POST request is made to the view. 
+It first gets the form using `self.get_form()`. If there is an uploaded file with the key "add_image" in the 
+request, it sets that file as the value of the "image" field in the form. It then checks if the form is valid. 
+If it is valid, it calls the `form_valid()` method. If it is not valid, it calls the `form_invalid()` method.
 """
   
 
 @method_decorator(login_required, name='dispatch')
-#@method_decorator(user_passes_test(lambda u: u.is_staff or u == u.post.author), name='dispatch')
 class PostUpdateView(AuthorOrStaffRequiredMixin, UpdateView):
     model = Post
     fields = ["title", "description", "image"]
@@ -149,75 +127,54 @@ class PostUpdateView(AuthorOrStaffRequiredMixin, UpdateView):
         return super().form_valid(form)
     
 """
-By applying the `@login_required` decorator to the `dispatch` method of the `PostListView`, the view 
-will only be accessible to authenticated users. If an unauthenticated user tries to access the view, 
-they will be redirected to the login page.
+- `@method_decorator(login_required, name='dispatch')` is a method decorator that applies the 
+`login_required` decorator to the `dispatch` method of the `PostUpdateView` class. This decorator 
+ensures that only authenticated users can access the view.
 
-The `user_passes_test` decorator is a built-in Django decorator that allows you to define a custom test 
-function to determine if a user is allowed to access a view. The test function should take a user object 
-as input and return `True` if the user passes the test, or `False` otherwise. 
+- `PostUpdateView` is a class-based view that inherits from `UpdateView`. It represents a view for 
+updating an existing post.
 
-The `UpdateView` class is a generic class-based view provided by Django. It is used for updating existing 
-objects of a model.
+- `AuthorOrStaffRequiredMixin` is a custom mixin that provides authorization checks to ensure that only 
+the author of the post or staff members can access the view.
 
-The `model` attribute specifies the model class that the `UpdateView` should use to update an existing object. 
-It is set to `Post`, which means the `UpdateView` will update an existing `Post` object.
+- `model = Post` specifies the model associated with the view, in this case, the `Post` model.
 
-The `fields` attribute specifies the form fields that should be displayed in the template for updating an 
-existing object. It is set to `["title", "description", "image"]`, which means the form will have fields for 
-`title`, `description`, and `image`.
+- `fields = ["title", "description", "image"]` specifies the fields of the model that will be included 
+in the form for updating a post.
 
-The `template_name` attribute specifies the HTML template file that should be used to render the form for 
-updating an existing object. It is set to `post_update.html`, which means the `UpdateView` will use the 
-`post_update.html` template.
+- `template_name = "post_update.html"` specifies the template to use for rendering the view.
 
-The `get_success_url()` method is overridden to provide the URL to which the user should be redirected after 
-successfully updating an object. It uses `reverse_lazy("post-detail", kwargs={'pk':self.object.pk})` to 
-reverse the URL named `post-detail` and pass the primary key (`pk`) of the updated object as a keyword argument.
+- `get_success_url()` is a method that returns the URL to redirect to after a successful form submission. 
+In this example, it uses the `reverse_lazy()` function to generate the URL for the "post-detail" view and 
+passes the primary key (`pk`) of the updated post as a keyword argument.
 
-The `form_valid()` method is overridden to provide additional logic when the form is valid. It checks if the 
-`remove_image` key is present in the `form.cleaned_data` dictionary. If it is, it deletes the existing image 
-file associated with the `Post` object (if any) and sets the `image` field to `None`. This allows the user 
-to remove the current image.
-
-If the `replace_image` key is present in the `request.FILES` dictionary, it assigns the uploaded image file 
-to the `image` field of the form. This allows the user to replace the current image with a new one.
-
-Finally, it calls `super().form_valid(form)` to save the form and perform any additional logic.
+- `form_valid(form)` is a method that is called when the form is submitted and valid. It checks if the 
+"remove_image" field in the form's cleaned data is `True`. If it is, it deletes the existing image associated 
+with the post (if any) and sets the "image" field to `None`. If the "replace_image" key is present in the 
+uploaded files, it sets the "image" field to the uploaded file. Finally, it calls the `form_valid()` method 
+of the parent class.
 """
     
 
 @method_decorator(login_required, name='dispatch')
-#@method_decorator(user_passes_test(lambda u: u.is_staff or u == u.object.author), name='dispatch')
 class PostDeleteView(AuthorOrStaffRequiredMixin, DeleteView):
     model = Post
     template_name = "post_delete.html"
     success_url = reverse_lazy("post-list")
 
 """
-By applying the `@login_required` decorator to the `dispatch` method of the `PostListView`, the view 
-will only be accessible to authenticated users. If an unauthenticated user tries to access the view, 
-they will be redirected to the login page.
+- `PostDeleteView` is a class-based view that inherits from `DeleteView`. It represents a view for deleting 
+an existing post.
 
-The `user_passes_test` decorator is a built-in Django decorator that allows you to define a custom test 
-function to determine if a user is allowed to access a view. The test function should take a user object 
-as input and return `True` if the user passes the test, or `False` otherwise. 
+- `AuthorOrStaffRequiredMixin` is a custom mixin that provides authorization checks to ensure that only the 
+author of the post or staff members can access the view.
 
-`PostDeleteView` class inherits from `DeleteView` and provides some additional functionality.
+- `model = Post` specifies the model associated with the view, in this case, the `Post` model.
 
-The `model` attribute specifies the model class that the `DeleteView` should use to delete an object. It is 
-set to `Post`, which means the `DeleteView` will delete a `Post` object.
+- `template_name = "post_delete.html"` specifies the template to use for rendering the view.
 
-The `template_name` attribute specifies the HTML template file that should be used to render the confirmation 
-page for deleting an object. It is set to `post_delete.html`, which means the `DeleteView` will use the 
-`post_delete.html` template.
-
-The `success_url` attribute specifies the URL to which the user should be redirected after successfully 
-deleting an object. It is set to `reverse_lazy("post-list")`, which means the user will be redirected to the 
-URL named `"post-list"`.
-
-This code allows the user to delete an existing `Post` object by displaying a confirmation page and handling 
-the deletion process.
+- `success_url = reverse_lazy("post-list")` specifies the URL to redirect to after a successful deletion. It 
+redirects to the "post-list" URL.
 """
 
     
@@ -279,43 +236,31 @@ class PostDetailView(DetailView):
         return redirect('post-detail', pk=post.id)
 
 """
-By applying the `@login_required` decorator to the `dispatch` method of the `PostListView`, the view 
-will only be accessible to authenticated users. If an unauthenticated user tries to access the view, 
-they will be redirected to the login page.
+- `@method_decorator(login_required, name='dispatch')` is a method decorator that applies the 
+`login_required` decorator to the `dispatch` method of the `PostDetailView` class. This decorator 
+ensures that only authenticated users can access the view.
 
-The `model` attribute specifies the model class that the `DetailView` should use to retrieve the object 
-to display. It is set to `Post`, which means the `DetailView` will retrieve a `Post` object.
+- `PostDetailView` is a class-based view that inherits from `DetailView`. It represents a view for 
+displaying the details of a post.
 
-The `template_name` attribute specifies the HTML template file that should be used to render the details 
-of the object. It is set to `post_detail.html`, which means the `DetailView` will use the `post_detail.html` 
-template.
+- `model = Post` specifies the model associated with the view, in this case, the `Post` model.
 
-The `context_object_name` attribute specifies the name of the variable that will be used in the template 
-to access the object being displayed. It is set to `post`, which means the object will be accessible in 
-the template using the variable name `post`.
+- `template_name = "post_detail.html"` specifies the template to use for rendering the view.
 
-The `get_context_data()` method is overridden to provide additional context data to the template. It retrieves 
-the `comments` associated with the `Post` object and organizes them along with their replies into a list of 
-dictionaries. It also includes the `imageURL` of the `Post` object in the context.
+- `context_object_name = "post"` specifies the name of the variable that will be used to access the 
+post object in the template.
 
-The `post()` method is overridden to handle HTTP POST requests sent to the view. It retrieves the `Post` object, 
-the `content` of the comment or reply from the request, and the IDs of the comment or reply to delete from the 
-request.
+- `get_context_data(self, **kwargs)` is a method that adds additional context data to be used in the 
+template. It retrieves the comments associated with the post and organizes them into a list of dictionaries 
+containing the comment and its replies. It also adds the `imageURL` attribute of the post to the context.
 
-If the `content` and `parent_comment_id` are present in the request, it creates a new reply to a comment by 
-retrieving the parent comment and creating a new `Comment` object with the provided content, author, and parent 
-comment.
+- `get_comments_with_replies(self, comments)` is a helper method that takes a queryset of comments and returns 
+a list of dictionaries, each containing a comment and its replies.
 
-If only the `content` is present in the request, it creates a new comment on the post with the provided content 
-and author.
-
-If only the `delete_comment_id` is present in the request, it retrieves the comment to delete and deletes it 
-from the database.
-
-If only the `delete_reply_id` is present in the request, it retrieves the reply to delete and deletes it from 
-the database.
-
-Finally, it redirects the user to the `post-detail` URL for the current post.
+- `post(self, request, *args, **kwargs)` is a method that is called when the view receives a POST request. 
+It handles the creation of new comments and replies, as well as the deletion of comments and replies. It 
+retrieves the necessary data from the request's POST data and performs the appropriate actions based on the 
+data. Finally, it redirects the user back to the post detail page.
 """
 
 
