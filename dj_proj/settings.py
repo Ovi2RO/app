@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
+    "channels",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -49,7 +51,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.google",
     "crispy_forms",
     "A_test_post_app",
-    'laika',
+    "laika",
 ]
 """
 'accounts': This is a custom app specific to your project that likely handles user accounts and related 
@@ -90,7 +92,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "dj_proj.wsgi.application"
-
+ASGI_APPLICATION = "dj_proj.asgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

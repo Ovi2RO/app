@@ -39,6 +39,7 @@ urlpatterns = [
     path('laika/',include('laika.urls')),
     path('test/', include('A_test_post_app.urls')),     #way
     path('parenting/', include('get_app.urls')),
+    path('messages/', include('message_app.urls')),
 ]
 
 if settings.DEBUG:
