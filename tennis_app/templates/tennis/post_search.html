@@ -1,0 +1,31 @@
+
+{% extends 'tennis/tennis_base.html' %}
+
+{% block content %}
+<form method="get" action="{% url 'tennis-post-list' %}">
+{% csrf_token %}
+{{ form.as_p }}
+
+<button type="submit">Search</button>
+</form>
+
+<!-- Displaying search results -->
+{% if no_results %}
+    <p>No results found.</p>
+{% else %}
+    <!-- Displaying search results -->
+    <h2>Search Results:</h2>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <p><strong>Name:</strong> {{ post.user_name }}- {{ post.user_last }}</p>
+                <img src="{{ post.image.url }}" alt="{{ post.user_name }}'s Profile Picture">
+                <div class="btn-group">
+                    <a href="{% url 'tennis-post-detail' post.id  %}" class="btn btn-sm btn-outline-secondary">View</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}

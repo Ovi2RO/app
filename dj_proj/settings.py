@@ -26,6 +26,7 @@ SECRET_KEY = "django-insecure-lh31!^!y-0i%@=js=g4+@8$&5=c0fr*nif7geja=gr5i#*wuog
 DEBUG = True
 
 ALLOWED_HOSTS = []
+DATE_INPUT_FORMAT=['%d/%m/%Y']
 
 
 # Application definition
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "A_test_post_app",
     'laika',
+    'tennis_app',
 ]
 """
 'accounts': This is a custom app specific to your project that likely handles user accounts and related 

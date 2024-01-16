@@ -1,0 +1,11 @@
+<!-- tennis_app/templates/create_post.html -->
+{% extends 'tennis/tennis_base.html' %}
+
+{% block content %}
+  <h2>Create a new post</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" >Submit</button>
+  </form>
+{% endblock %}

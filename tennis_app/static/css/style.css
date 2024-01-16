@@ -1,0 +1,92 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Remove default margin */
+    padding: 20px;
+    background-color: #f8f8f8;
+    /* Set background image */
+    background-image: url('tennis_app/static/running-sports-3d-art-2m678m5aziss1a53.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #2c3e50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Menu styles */
+.menu {
+    color: #fff;
+    margin-right: auto; /* Push "Menu" to the left */
+}
+
+/* Header links styles */
+.header-links {
+    display: flex;
+    align-items: center;
+}
+
+.header-links a {
+    color: #fff;
+    margin-left: 20px; /* Adjust the spacing between links */
+    text-decoration: none;
+}
+
+/* Container for the post creation form */
+.post-create-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for form labels */
+.post-create-container label {
+    margin-bottom: 10px;
+    display: block;
+    font-weight: bold;
+}
+
+/* Styles for form inputs */
+.post-create-container input[type="text"],
+.post-create-container input[type="date"],
+.post-create-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Styles for the submit button */
+.post-create-container input[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    padding: 12px 20px; /* Adjust padding for better appearance */
+}
+
+.post-create-container input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* Landing content styles */
+.landing-content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

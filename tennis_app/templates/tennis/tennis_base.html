@@ -1,0 +1,19 @@
+<!-- tennis_app/templates/base.html -->
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+<nav class="navbar">
+    <div class="menu">Menu</div>
+    <div class="header-links">
+        
+        <a href="#">Language</a>
+        <a href="{% url 'tennis-post-create' %}">New Post</a>
+        <a href="{% url 'tennis-post-list' %}">Post List</a>
+    </div>
+</nav>
+<div class="content-container">
+    {% block content %}
+    {% endblock %}
+</div>
