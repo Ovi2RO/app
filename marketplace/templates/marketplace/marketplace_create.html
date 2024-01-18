@@ -1,20 +1,27 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="{% static "marketplace/css/style.css" %}">
-    </head>
-    <body>
-        <div>
-            <h2>Post item to sell</h2>
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Submit">
-            </form>
+{% extends "accounts/base.html" %}
+
+{% block content %}
+    <div class="content-container marketplace">
+        <div class="marketplace-bg">
+            <div class="marketplace-bg2">
+                <h1>Post item to sell</h1>
+
+                <div class="form-container edit marketplace-update-form">
+                    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                        <div class="create-form tn">
+                            <div class="parenting-update-form">
+                                {{form.as_p}}
+                            </div>
+        
+                            <div class="mini-bar">
+                                <button type="submit">Create</button>
+                                <a href="{% url "marketplace_list" %}" class="cancel-button">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </body>
-</html>
+    </div>
+{% endblock %}
+

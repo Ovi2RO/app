@@ -1,35 +1,55 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Marketplace</title>
-        <link rel="stylesheet" href="{% static "marketplace/css/style.css" %}">
-    </head>
-    <body>
-        <h1>Welcome to the marketplace</h1>
-        <button type="button"
-                onclick="location.href='{% url "marketplace_search" %}'">Search for items</button>
-        <button type="button"
-                onclick="location.href='{% url "marketplace_my_posts" request.user.username %}'">My posts</button>
-        <button type="button"
-                onclick="location.href='{% url "marketplace_create" %}'">Create new post</button>
-        {% if marketposts %}
-            {% for post in marketposts %}
-                <a href="{{ post.get_absolute_url }}">
-                    <div>
-                        <h3>{{ post.title }}</h3>
-                        <p>Seller: {{ post.author }}</p>
-                        <p>Price: {{ post.price }}</p>
-                        <p>Posted on: {{ post.created_on }}</p>
-                        <p>Description: {{ post.description }}</p>
-                        {% if post.image %}<img src="{{ post.image.url }}" class="thumbnail">{% endif %}
-                    </div>
-                </a>
-            {% endfor %}
-        {% else %}
-            <p>No posts found.</p>
-        {% endif %}
-    </body>
-</html>
+{% extends "accounts/base.html" %}
+
+{% block content %}
+    <div class="content-container marketplace">
+        <div class="marketplace-bg">
+            <div class="marketplace-bg2">
+                <div id="parenting-detail-title">
+                    <h1>Welcome to the marketplace</h1>
+                </div>
+
+                <div class="mini-bar">
+                    <button type="button" onclick="location.href='{% url "marketplace_search" %}'">Search for items</button>
+                    <button type="button" onclick="location.href='{% url "marketplace_my_posts" request.user.username %}'">My posts</button>
+                    <button type="button" onclick="location.href='{% url "marketplace_create" %}'">Create new post</button>
+                </div>
+
+                <div class="parenting-posts">
+                    {% if marketposts %}
+                        {% for post in marketposts %}
+                            <div class="post-container" onclick="window.location.href='{{ post.get_absolute_url }}'">
+                                <div class="marketplace-user-info">
+                                    <h4>Seller: {{ post.author }}</h4>
+                                    <p>Posted on: {{ post.created_on }}</p>
+                                </div>
+
+                                <div class="description-container">
+                                    <div class="description-img">
+                                        {% if post.image %}
+                                            <img src="{{ post.image.url }}" class="thumbnail" style="width:100px; height:auto;">
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="description-content">
+                                        <h4>{{ post.title }}</h4>
+                                        <p>Description: {{ post.description }}</p>
+                                        <p>Price: {{ post.price }}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        {% endfor %}
+                        
+                    {% else %}
+                        <p>No posts found.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+
+
+
+

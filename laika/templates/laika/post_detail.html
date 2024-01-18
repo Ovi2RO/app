@@ -2,29 +2,45 @@
 
 
 {% block content %}
-    <br>
-    <br>
-    <br>
-    <h1>{{post.title}}</h1>
-    {% if post.image %}
-        <img src="{{ post.image.url }}" style="width:50px; height:auto">
-    {% endif %} 
+    <div class="content-container laika">
+        {% if post.image %}
+            <img src="{{ post.image.url }}" style="width:800px; height:auto">
+        {% endif %} 
 
-    <p><strong>Description:</strong> {{post.description}}</p>
-    <p><strong>Author:</strong> {{post.author}}</p>
-    <p> {{ post.author.pet_set.first.pet_name}}</p>
-
-    {% if post.author.lpu.image %}
-        <img src="{{ post.author.lpu.image.url }} ">
-    {% endif %}
+        <div class="parenting-posts">
+            <div class="parenting-main-post">
+                <div id="parenting-detail-title">
+                    <h1 >{{post.title}}</h1>
+                </div>
     
-    {% if user == post.author or user.is_staff %}
-        <a href="{% url 'laika-post-update' post.pk %}">Update</a>
-        <a href="{% url 'laika-post-delete' post.pk %}">Delete</a>
-    {% endif %}
+                <div id="parenting-detail-description">
+                    <p>Desctiption: {{post.description}}</p>
+                </div>
     
+                <div id="parenting-detail-info">
+                    <div id="pet">
+                        {% if post.author.lpu.image %}
+                            <img src="{{ post.author.lpu.image.url }}" style="width:100px; height:auto; border-radius: 50%;">
+                        {% endif %}
+                        <p> {{ post.author.pet_set.first.pet_name}}</p>
+                    </div>
 
-
-
-
+                    <p><strong>Author:</strong> {{post.author}}</p>
+                    <div>
+                        <p><strong>Post created:</strong> {{post.created_at}}</p>
+                        <p><strong>Last updated:</strong> {{post.updated_at}}</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="mini-bar" id="mini-bar">
+                {% if user.is_authenticated %}
+                    {% if user == post.author or user.is_staff %}
+                        <a href="{% url 'laika-post-update' post.pk %}" class="cancel-button">Update</a>
+                        <a href="{% url 'laika-post-delete' post.pk %}" class="cancel-button">Delete</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

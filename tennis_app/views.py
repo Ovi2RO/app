@@ -17,31 +17,15 @@ from tennis_app import forms
 from datetime import datetime, timedelta
 
 
-
-# class HomeView(TemplateView):
-# template_name = 'home.html'
-
-
-# class PostListView(ListView):
-# model = Posts
-# template_name = 'post_list.html'
-# context_object_name = 'posts'
-# ordering = ['-play_date']  
-# paginate_by = 10 
-
 class PostListView(LoginRequiredMixin,ListView):
     model = Posts
-    template_name = 'tennis/post_search.html' #post_list.html 
+    template_name = 'tennis/post_search.html'
     context_object_name = 'posts'
-   # ordering = ['-play_date']  
-   # paginate_by = 10 
-    #form_class=forms.SearchForm
 
     def get_context_data(self, **kwargs: Any):
         context = super().get_context_data(**kwargs)
         context['form']= forms.SearchForm()
         return context
-
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -86,6 +70,19 @@ class PostListView(LoginRequiredMixin,ListView):
 
             return queryset
 
+"""
+- `model`: This attribute specifies the model class that the view will be working with, it is a model `Posts`.
+- `template_name`: This attribute specifies the template to be used for rendering the view, in this case, it is 
+set to `'tennis/post_search.html'`.
+- `context_object_name`: This attribute specifies the name of the variable that will be used in the template to 
+access the list of objects, it is set to `'posts'`.
+- `get_context_data(self, **kwargs: Any)`: This method is overridden to add extra context data to be used in the 
+template. It calls the parent class method to get the initial context data and then adds a `'form'` key with an 
+instance of `forms.SearchForm()` as its value.
+- `get_queryset(self)`: This method is overridden to customize the queryset based on the search criteria provided 
+in the `forms.SearchForm`. It retrieves the form data from the request, performs filtering on the `queryset` based 
+on the form data, and returns the modified queryset.
+"""
 
 
 class PostCreateView(LoginRequiredMixin,CreateView):
@@ -97,8 +94,26 @@ class PostCreateView(LoginRequiredMixin,CreateView):
     def form_valid(self, form):
         print('It is a message')
         messages.success(self.request, 'Created successfully')
-        form.instance.user = self.request.user
+        form.instance.author = self.request.user
         return super(PostCreateView, self).form_valid(form)
+
+"""
+- `model = Posts`: This specifies the model that the view is associated with, in this case, the `Posts` model.
+- `form_class = forms.CreatePostForm`: This specifies the form class to be used for creating the post. It is 
+a custom form defined in the `forms` module.
+- `template_name = 'tennis/post_create.html'`: This specifies the template to be rendered when the view is accessed.
+- `success_url = reverse_lazy('tennis-post-list')`: This sets the URL to redirect to after a successful form 
+submission. It uses the `reverse_lazy` function to provide a URL pattern name.
+- `def form_valid(self, form)`: This is a method that is called when the form is valid. It overrides the default 
+behavior of the `CreateView` class.
+- `print('It is a message')`: This line prints the message "It is a message" to the console.
+- `messages.success(self.request, 'Created successfully')`: This line adds a success message to be displayed to 
+the user. It uses the `messages` framework to handle user notifications.
+- `form.instance.user = self.request.user`: This line sets the `user` attribute of the form instance to the 
+currently logged-in user.
+- `return super(PostCreateView, self).form_valid(form)`: This line calls the `form_valid` method of the parent 
+class to handle the form validation and saving process.
+"""
     
 
 class PostDetailView(LoginRequiredMixin,DetailView):
@@ -129,8 +144,29 @@ class PostDetailView(LoginRequiredMixin,DetailView):
 
         return redirect('tennis-post-detail', pk=post.pk)
 
+"""
+The "PostDetailView" class inherits from two other classes, namely "LoginRequiredMixin" and "DetailView". The view 
+requires the user to be logged in and that it is based on Django's built-in "DetailView" class, which provides 
+functionality for displaying a single object.
+
+The "template_name" attribute specifies the path to the template file that will be used to render the view, in 
+this case, 'tennis/post_detail.html'.
+
+The class has two methods, "get" and "post", which handle HTTP GET and POST requests, respectively.
+
+In the "get" method, the code retrieves the post object based on the provided primary key (pk) using the 
+"get_object_or_404" function. It also retrieves all comments associated with the post and initializes a comment 
+form. The retrieved objects are then passed to the template context, which will be used to render the template 
+with the necessary data.
+
+The "post" method is responsible for handling the submission of comment forms. It retrieves the post object and 
+creates an instance of the comment form, populated with the data from the request. If the form is valid, it saves 
+the comment object with the associated post and author information. Finally, it redirects the user to the 
+'tennis-post-detail' view for the specific post.
+"""
+
    
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Posts
     form_class = forms.UpdatePostForm
     template_name = 'tennis/post_update.html'
@@ -149,6 +185,28 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
             return True
         return False
 
+"""
+The "PostUpdateView" class is a Django view that handles the updating of a specific post. It is designed to be 
+used in conjunction with a form to allow users to edit and update the content of a post. This class inherits from 
+multiple Django mixins, including "LoginRequiredMixin" and "UserPassesTestMixin", to enforce authentication and 
+permission checks.
+
+Key attributes and methods of the "PostUpdateView" class include:
+
+- "model": Specifies the model that the view operates on, in this case, the "Posts" model.
+- "form_class": Specifies the form class to be used for updating the post, the "UpdatePostForm" form.
+- "template_name": Specifies the template used to render the update view, which is set to 'tennis/post_update.html'.
+- "get_success_url()": Overrides the default behavior of determining the URL to redirect to after a successful 
+update. It uses the reverse_lazy() function to generate the URL for the "tennis-post-detail" view, passing the 
+primary key (pk) of the updated object.
+- "form_valid(form)": Overrides the default behavior when the form is valid and submitted. It handles the form 
+submission, including any additional processing or actions. It displays a success message using the messages 
+framework and then calls the parent class's form_valid() method.
+- "test_func()": Overrides the default behavior of the "UserPassesTestMixin" to determine whether the current 
+user has permission to update the post. It checks if the user is the author of the post or if the user is a staff 
+member.
+"""
+
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin,DeleteView):
     model = Posts
@@ -162,7 +220,34 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin,DeleteView):
             return True
         return False
 
-        
+"""
+The `PostDeleteView` class is a view in a web application that handles the deletion of a specific post. It is 
+designed to be used in conjunction with other Django mixins, namely `LoginRequiredMixin` and `UserPassesTestMixin`, 
+to enforce certain conditions and permissions.
+
+- `LoginRequiredMixin` ensures that only authenticated users can access this view. If a user is not logged in, 
+they will be redirected to the login page.
+- `UserPassesTestMixin` provides a mechanism to test whether a user passes a specific condition before allowing 
+access to the view. It checks if the logged-in user is the author of the post being deleted.
+
+The view inherits from Django's `DeleteView`, which is a generic view that handles the deletion of a model 
+instance. The specific model being operated on is `Posts`.
+
+The `template_name` attribute specifies the template used to render the confirmation page for deleting the post. 
+It is set to `'tennis/post_delete.html'`.
+
+The `context_object_name` attribute defines the name of the variable that will be used in the template to 
+represent the post being deleted. It is set to `'posts'`.
+
+The `success_url` attribute determines the URL to which the user will be redirected after successfully deleting 
+the post. It uses Django's `reverse_lazy` function to provide a URL pattern name, `'tennis-post-list'`, which 
+will be resolved to the corresponding URL.
+
+Finally, the `test_func` method is implemented to check if the logged-in user is the author of the post. It 
+retrieves the post object using `self.get_object()` and compares the author with the current user. If they match, 
+the method returns `True`, indicating that the user passes the test and has permission to delete the post. 
+Otherwise, it returns `False`.
+"""        
   
 
 

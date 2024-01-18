@@ -1,19 +1,27 @@
 {% extends "accounts/base.html" %}
 
 {% block content %}
+    <div class="content-container parenting">
+        <h1>Edit Post</h1>
 
-<h1>Edit post</h1>
+        <div class="form-container edit">
+            <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                <div class="parenting-update-form">
+                    {{form.as_p}}
+                </div>
 
-<form method="post" enctype="multipart/form-data">{% csrf_token %}
-    {{form.as_p}}
-    {% if form.instance.image %}
-        <p>Image:</p>
-        <img src="{{form.instance.image.url}}" alt="image">
-    {% endif %}
-    <div>
-        <button type="submit">Save</button>
-        <a href="{% url 'post-detail' post.pk %}">Cancel</a>
+                {% if form.instance.image %}
+                    <div class="image-container">
+                        <img src="{{form.instance.image.url}}" alt="image" style="width:500px; height:auto">
+                    </div>
+                {% endif %}
+
+                <div class="mini-bar">
+                    <button type="submit">Save</button>
+                    <a href="{% url 'post-detail' post.pk %}" class="cancel-button">Cancel</a>
+                </div>
+            </form>
+        </div>
     </div>
-</form>
 
 {% endblock %}

@@ -1,14 +1,22 @@
 {% extends "accounts/base.html" %}
 
 {% block content %}
+    <div class="content-container parenting">
+        <h1>Create a post</h1>
 
-<h1>Create a post</h1>
+        <div class="form-container edit">
+            <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                <div class="create-form">
+                    <div class="parenting-update-form">
+                        {{form.as_p}}
+                    </div>
 
-<div>
-    <form method="post" enctype="multipart/form-data">{% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Create">
-    </form>
-</div>
-
+                    <div class="mini-bar">
+                        <button type="submit">Create</button>
+                        <button onclick=window.location.href="{% url 'post-list' %}">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}

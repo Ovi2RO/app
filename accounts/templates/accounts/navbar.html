@@ -9,13 +9,17 @@
     <div class="container-fluid">
       {% if user.is_authenticated %}
         <div class="navbar-nav">
-          <a href="{% url 'home' %}" class="nav-item">
-            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo-img">
-          </a>
-          <a href="{% url 'post-list' %}" class="navbar-button nav-item">Parenting</a>
-          <a href="{% url 'laika-post-list' %}" class="navbar-button nav-item">Laika</a>
-          <a href="{% url 'marketplace_list' %}" class="navbar-button nav-item">Marketplace</a>
-          <a href="{% url 'tennis-post-list' %}" class="navbar-button nav-item">Sport</a>
+          <div>
+            <a href="{% url 'home' %}" class="nav-item">
+              <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo-img">
+            </a>
+          </div>
+          <div class="centered-div">
+            <a href="{% url 'post-list' %}" class="navbar-button nav-item">Parenting</a>
+            <a href="{% url 'laika-post-list' %}" class="navbar-button nav-item">Laika</a>
+            <a href="{% url 'marketplace_list' %}" class="navbar-button nav-item">Marketplace</a>
+            <a href="{% url 'tennis-post-list' %}" class="navbar-button nav-item">Sport</a>
+          </div>
         </div>
 
         <div class="align-right">
@@ -24,14 +28,17 @@
         </div>
       {% else %}
         <div class="navbar-nav">
-          <a href="{% url 'landing_view' %}" class="nav-item">
-            <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo-img">
-          </a>
+          <div>
+            <a href="{% url 'landing_view' %}" class="nav-item">
+              <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo-img">
+            </a>
+          </div>
         </div>
 
         <div class="align-right">
           <a class="navbar-button" href="{% url 'account_login' %}">Join!</a>
         </div>
+ 
       {% endif %}
     </div>
   </nav>
