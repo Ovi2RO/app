@@ -194,7 +194,7 @@ class PostDetailView(DetailView):
 
     def get_comments_with_replies(self, comments):
         comments_with_replies = []
-        for comment in comments:
+        for comment in comments.order_by('-created_at'):
             comment_data = {
                 'comment': comment,
                 'replies': comment.reply.all()

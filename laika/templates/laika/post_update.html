@@ -2,23 +2,26 @@
 
 
 {% block content %}
-    <br>
-    <br>
-    <br>
+<div class="content-container laika">
     <h1>Edit Post</h1>
     
-    <div>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{form.as_p}}
+    <div class="form-container edit">
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+            <div class="parenting-update-form">
+                {{form.as_p}}
+            </div>
+
             {% if form.instance.image %}
-                <p>Image:</p>
-                <img src="{{form.instance.image.url }}" alt="image">
+                <div class="image-container">
+                    <img src="{{form.instance.image.url}}" alt="image" style="width:500px; height:auto">
+                </div>
             {% endif %}
-            <div>
+
+            <div class="mini-bar">
                 <button type="submit">Save</button>
-                <a href="{% url 'laika-post-detail' post.pk %}">Cancel</a>
+                <a href="{% url 'laika-post-detail' post.pk %}" class="cancel-button">Cancel</a>
             </div>
         </form>
     </div>
+</div>
 {% endblock %}

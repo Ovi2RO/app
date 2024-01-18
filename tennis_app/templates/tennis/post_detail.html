@@ -1,40 +1,82 @@
-{% extends 'tennis/tennis_base.html' %}
+{% extends "accounts/base.html" %}
 
 {% block content %}
-  <div class="post-detail">
-    <h1>{{ post.user_name }}'s Profile</h1>
-    <img src="{{ post.image.url }}" alt="{{ post.user_name }}'s Profile Picture">
-    <p><strong>Gender:</strong> {{ post.get_user_gender_display }}</p>
-    <p><strong>Birth Date:</strong> {{ post.birth_date }}</p>
-    <p><strong>Phone:</strong> {{ post.phone }}</p>
-    <p><strong>Email:</strong> {{ post.user_email }}</p>
-    <p><strong>Description:</strong> {{ post.description }}</p>
-    <p><strong>Play Date:</strong> {{ post.play_date }}</p>
-    <p><strong>Level:</strong> {{ post.get_level_display }}</p>
-    <p><strong>Language:</strong> {{ post.get_language_display }}</p>
-    <p><strong>Type:</strong> {{ post.type }}</p>
-    {% if post.club_name %}
-      <p><strong>Club Name:</strong> {{ post.club_name }}</p>
-    {% endif %}
-    <p><strong>Posted by:</strong> {{ post.author.username }}</p>
-    <p><strong>Posted on:</strong> {{ post.current_date }}</p>
-    <!-- Comments Section -->
-    <h2>Comments</h2>
-    {% for comment in comments %}
-      <p>{{ comment.text }} - Rank: {{ comment.rank }} - by {{ comment.author.username }}</p>
-    {% endfor %}
 
-    <!-- Comment Form -->
-    <h2>Add a Comment</h2>
-    <form method="post" action="{% url 'tennis-post-detail' pk=post.pk %}">
-      {% csrf_token %}
-      {{ comment_form.as_p }}
-      <button type="submit">Submit Comment</button>
-    </form>
+  <div class="content-container tennis">
+    
+    {% if post.image %}
+        <img src="{{post.image.url}}" style="width:800px; height:auto">
+    {% endif%}
 
-    <div>
-      <a href="{% url 'tennis-post-update' post.pk %}" class="btn btn-primary">Update</a>
-      <a href="{% url 'tennis-post-delete' post.pk %}" class="btn btn-danger">Delete</a>
+    <div class="parenting-posts">
+
+      <div class="parenting-main-post">
+        <div id="parenting-detail-title">
+          <h1>{{ post.user_name }}'s Profile</h1>
+        </div>
+
+        <div id="parenting-detail-description">
+            <p>Desctiption: {{post.description}}</p>
+        </div>
+
+
+        <div id="parenting-detail-info">
+          <p><strong>Play Date:</strong> {{ post.play_date }}</p>
+          <p><strong>Type:</strong> {{ post.type }}</p>
+          <p><strong>Level:</strong> {{ post.get_level_display }}</p>
+        </div>
+
+        <div id="parenting-detail-info">
+          <p><strong>Phone:</strong> {{ post.phone }}</p>
+          <p><strong>Email:</strong> {{ post.user_email }}</p>
+          <p><strong>Language:</strong> {{ post.get_language_display }}</p>
+        </div>
+
+        <div id="parenting-detail-info">
+          <p><strong>Gender:</strong> {{ post.get_user_gender_display }}</p>
+          <p><strong>Birth Date:</strong> {{ post.birth_date }}</p>
+          {% if post.club_name %}
+            <p><strong>Club Name:</strong> {{ post.club_name }}</p>
+          {% endif %}
+        </div>
+
+        {% comment %} <div id="parenting-detail-info">
+            <p><strong>Posted by:</strong> {{post.author.username}}</p>
+            <p><strong>Post created:</strong> {{post.created_at}}</p>
+            <p><strong>Last updated:</strong> {{post.updated_at}}</p>
+        </div> {% endcomment %}
+      </div>
+
+      <div class="mini-bar" id="mini-bar">
+        {% if user.is_authenticated %}
+            {% if user == post.author or user.is_staff %}
+                <button onclick=window.location.href="{% url 'tennis-post-update' post.pk %}">Update</button>
+                <button onclick=window.location.href="{% url 'tennis-post-delete' post.pk %}">Delete</button>
+            {% endif %}
+        {% endif %}
+      </div>
+
+      <!-- Comments Section -->
+      <div class="parenting-comments">
+        <h2>Comments</h2>
+        <div class="comment tn-cont">
+          {% for comment in comments %}
+            <p>{{ comment.text }} - Rank: {{ comment.rank }} - by {{ comment.author.username }}</p>
+          {% endfor %}
+        </div>
+
+        <div class="new-comment tn-nc">
+          <!-- Comment Form -->
+          <h2>Add a Comment</h2>
+          <form method="post" action="{% url 'tennis-post-detail' pk=post.pk %}">{% csrf_token %}
+
+            <div class="new-comment-elements tennis-list-form tn">
+              {{ comment_form.as_p }}
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 {% endblock %}

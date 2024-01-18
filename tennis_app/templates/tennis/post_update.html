@@ -1,12 +1,27 @@
-{% extends 'tennis/tennis_base.html' %}
+{% extends "accounts/base.html" %}
 
 {% block content %}
-  <h2>Update Post</h2>
-  <img src="{{ posts.image.url }}" alt="{{ posts.user_name }}'s Profile Picture">
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update</button>
-  </form>
-  <a href="{%  url 'tennis-post-detail' post.id  %}">Cancel</a>
+  <div class="content-container tennis">
+    <h2>Update Post</h2>
+
+    <div class="form-container edit">
+      <form method="post" enctype="multipart/form-data">{% csrf_token %}
+          <div class="parenting-update-form tn tennis-update-form">
+              {{form.as_p}}
+          </div>
+
+          {% if form.instance.image %}
+              <div class="image-container">
+                  <img src="{{ posts.image.url }}" alt="{{ posts.user_name }}'s Profile Picture" style="width:500px; height:auto">
+              </div>
+          {% endif %}
+
+          <div class="mini-bar">
+            <button type="submit">Update</button>
+            <a href="{% url 'tennis-post-detail' posts.id %}" class="cancel-button" >Cancel</a>
+          </div>
+      </form>
+    </div>
+
+  </div>
 {% endblock %}

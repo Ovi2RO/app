@@ -79,7 +79,7 @@ parameters in the GET request.
 class PostCreateView(CreateView):
     model = Post
     fields = ['title', 'description', 'image'] 
-    template_name = 'post_create.html'
+    template_name = 'laika/post_create.html'
     success_url = reverse_lazy('laika-post-list')
     
     def form_valid(self, form):

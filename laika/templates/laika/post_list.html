@@ -2,34 +2,50 @@
 
 
 {% block content %}
-    <br>
-    <br>
-    <br>
-    <a href="{% url 'laika-post-create' %}">Create</a>
-    <a href="{% url 'laika-profile' %}">Profile</a>
+    <div class="content-container laika">
+        <div class="mini-bar">
+            <button onclick=window.location.href="{% url 'laika-post-create' %}">Create</button>
+            <button onclick=window.location.href="{% url 'laika-profile' %}">Profile</button>
+        </div>
 
-    <form method="GET" action="{% url 'laika-post-list' %}">
-        <input type="text" name="search_words" placeholder="Search for...">
-        <select name="search_field">
-            <option value="title">Title</option>
-            <option value="description">Description</option>
-        </select>
-        <input type="date" name="search_date" placeholder="Search for date...">
-        <button type="submit">Search</button>
-    </form>
+        <form method="GET" action="{% url 'laika-post-list' %}">
+            <div class="form-container">
+                <div class="form-container-elements">
+                    <input type="text" name="search_words" placeholder="Search for..." id="parenting_input_text">
+                    <select name="search_field" id="parenting_option">
+                        <option value="title">Title</option>
+                        <option value="description">Description</option>
+                    </select>
+                    <input type="date" name="search_date" placeholder="Search for date..." id="parenting_date">
+                </div>
 
-    <div>
-        {% for post in posts %}
-            <a href= "{% url 'laika-post-detail' post.id %}"><strong>{{ post.title }}</strong></a>
-        {% empty %}
-            <p>No posts available</p>
-        {% endfor %}
+                <div id="parenting_search_button">
+                    <button type="submit" id="parenting_search_button">Search</button>
+                </div>
+            </div>
+        </form>
 
+        <div class="parenting-posts">
+            {% for post in posts %}
+                <div class="post-container" onclick="window.location.href='{% url 'laika-post-detail' post.pk %}'">
+                    <div class="user-info">
+                        <h3>{{ post.author }}</h3>
+                        <img src="{{ post.author.lpu.image.url }}" style="width:100px; height:auto; border-radius: 50%;">
+                        <p>Member since:</p>
+                        <p>{{ post.author.date_joined }}</p>
+                    </div>
+                    <div class="laika-post-title">
+                        <h4>{{ post.title }}</h4>
+                        <p>{{ post.description|slice:":50" }}...(read more)</p>
+                        <p>{{ post.created_at }}</p>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No posts available</p>
+            {% endfor %}
+
+        </div>
     </div>
-
-    
-
-    
 {% endblock %}
 
 

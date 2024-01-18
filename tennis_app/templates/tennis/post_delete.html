@@ -1,11 +1,26 @@
-{% extends 'tennis/tennis_base.html' %}
+{% extends "accounts/base.html" %}
 
 {% block content %}
-  <h2>Delete Post</h2>
-  <p>Are you sure you want to delete this post?</p>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
-  </form>
-  <a href="{% url 'tennis-post-detail' post.id  %}">Cancel</a>
+  <div class="content-container tennis">
+    <h1 style="color: #8B0000">Delete post</h1>
+
+    <div class="form-container edit">
+      <div class="form-container edit">
+          <h3>Are you sure you want to delete this post?</h3>
+      </div>
+
+      <div>
+          <h5><strong>Description:</strong></h5>
+          <p>{{posts.description}}</p>
+      </div>
+
+      <form method="post">{% csrf_token %}
+          <div class="mini-bar">
+            <button type="submit">Delete</button>
+              <a href="{% url 'tennis-post-detail' posts.id %}" class="cancel-button">Cancel</a>
+          </div>
+      </form>
+    </div>
+
+  </div>
 {% endblock %}

@@ -188,6 +188,7 @@ class MarketplaceDeleteView(AuthorOrStaffRequiredMixin, DeleteView):
     model = MarketplaceItemPost
     template_name = "marketplace/marketplace_delete.html"
     success_url = "/marketplace/"
+    context_object_name = "marketpost"      #
 
 """
 1. `@method_decorator(login_required, name="dispatch")`:

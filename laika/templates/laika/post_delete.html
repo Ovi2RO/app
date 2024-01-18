@@ -1,27 +1,30 @@
 {% extends "accounts/base.html" %}
 
-
 {% block content %}
-    <br>
-    <br>
-    <br>
-    <h1>Delete Post</h1>
-    <div>
-        <p>Are you sure?</p>
-        <p>Title: {{ post.title }}</p>
-        <p>Description: {{post.description}}</p>
-        <form method= "post"> 
-            {% csrf_token %}
-            <button type="submit">Confirm</button>
-            <a href="{% url 'laika-post-detail' post.pk %}">Cancel</a>
-        </form>
+    <div class="content-container laika">
+        <h1 style="color: #8B0000">Delete post</h1>
 
+        <div class="form-container edit">
+            <div class="form-container edit">
+                <h3>Are you sure you want to delete this post?</h3>
+            </div>
+
+            <div>
+                <h4><strong>Title:</strong> {{post.title}}</h4>
+            </div>
+
+            <div>
+                <h5><strong>Description:</strong></h5>
+                <p>{{post.description}}</p>
+            </div>
+
+
+            <form method="post">{% csrf_token %}
+                <div class="mini-bar">
+                    <button type="submit">Confirm</button>
+                    <a href="{% url 'laika-post-detail' post.pk %}" class="cancel-button">Cancel</a>
+                </div>
+            </form>
+        </div>
     </div>
-    
-        
-    
-
-
-
-
 {% endblock %}
