@@ -222,11 +222,11 @@ class MarketplaceSearchResultsView(ListView):
     context_object_name = "posts"
 
     def get_queryset(self):
-        form = SearchForm(self.request.GET)
-        posts = super().get_queryset()
+         form = SearchForm(self.request.GET)
+         posts = super().get_queryset()
 
-        if form.is_valid():
-            # need the clean form data
+         if form.is_valid():
+            #need the clean form data
             title = form.cleaned_data.get("title")
             user = form.cleaned_data.get("user")
             category = form.cleaned_data.get("category")
@@ -235,29 +235,27 @@ class MarketplaceSearchResultsView(ListView):
             location = form.cleaned_data.get("location")
             init_post_date = form.cleaned_data.get("init_post_date")
             final_post_date = form.cleaned_data.get("final_post_date")
+            print(self.request.GET)
 
             # now we filter
 
-            posts = MarketplaceItemPost.objects.all()
-
             if title:
-                posts = posts.filter(title__icontains=title)
+                  posts = posts.filter(title__icontains=title)
             if user:
-                posts = posts.filter(user__username__icontains=user)
+                  posts = posts.filter(user__username__icontains=user)
             if category != "":
-                posts = posts.filter(category=category)
+                  posts = posts.filter(category=category)
             if min_price is not None:
-                posts = posts.filter(price__gte=min_price)
+                  posts = posts.filter(price__gte=min_price)
             if max_price is not None:
-                posts = posts.filter(price__lte=max_price)
+                  posts = posts.filter(price__lte=max_price)
             if location:
-                posts = posts.filter(location__icontains=location)
+                  posts = posts.filter(location__icontains=location)
             if init_post_date:
-                posts = posts.filter(created_at__date__gte=init_post_date)
+                  posts = posts.filter(created_at__date__gte=init_post_date)
             if final_post_date:
-                posts = posts.filter(created_at__date__lte=final_post_date)
-
-        return posts
+                  posts = posts.filter(created_at__date__lte=final_post_date)
+         return posts
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

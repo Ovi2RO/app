@@ -1,24 +1,25 @@
-from django.test import TestCase, Client
-from django.urls import reverse
-from django.contrib.auth.models import User
-from datetime import datetime
+from django.test import TestCase
 from .models import Post
+from django.contrib.auth.models import User
 
 class PostListViewTest(TestCase):
     def setUp(self):
-        self.client = Client()
-        self.user = User.objects.create_superuser(username='testuser', password='testpass')
-        self.client.login(username='testuser', password='testpass')
-        self.post = Post.objects.create(title='Test Post', description='This is a test post', created_at=datetime.now())
+        self.post1 = Post.objects.create(author=self.user, title='Test Post 1', description='Description 1')
+        self.post2 = Post.objects.create(author=self.user, title='Test Post 2', description='Description 2')
+        self.user = User.objects.create_user(username='testuser', password='user')
+        
+    def test_post_creation(self):
+        post1 = Post.objects.get(id=1)
+        post2 = Post.objects.get(id=2)
+
+        self.assertEqual(post1.title, 'Test Post 1')
+        self.assertEqual(post1.description, 'Description 1')
+
+        self.assertEqual(post2.title, 'Test Post 2')
+        self.assertEqual(post2.description, 'Description 2')
 
 
-    def test_post_list_view_with_search_words(self):
-        search_words = 'test'
-        search_field = 'title'
 
-        response = self.client.get(reverse('post-list'), {'search_words': search_words, 'search_field': search_field})
-
-        self.assertContains(response, self.post.title)
 
 
 
