@@ -16,6 +16,8 @@ urlpatterns = [
     path('test/', include('A_test_post_app.urls')),     # away
     path('parenting/', include('get_app.urls')),
     path('sport/',include('tennis_app.urls')),
+
+    path('apis/', include('apis.urls')),
 ]
 
 if settings.DEBUG:
