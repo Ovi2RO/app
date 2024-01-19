@@ -227,7 +227,6 @@ class MarketplaceSearchResultsView(ListView):
 
          if form.is_valid():
             #need the clean form data
-            cln_dt = form.cleaned_data
             title = form.cleaned_data.get("title")
             user = form.cleaned_data.get("user")
             category = form.cleaned_data.get("category")
