@@ -74,75 +74,46 @@
 
                 <h1>Search results</h1>
 
+                <div class="parenting-posts">
+                    {% if posts %}
+                        {% for post in posts %}
+                            <div class="post-container" onclick="window.location.href='{{ post.get_absolute_url }}'">
+                                <div class="marketplace-user-info">
+                                    <h4>Seller: {{ post.author }}</h4>
+                                    <p>Posted on: {{ post.created_on }}</p>
+                                </div>
+            
+                                <div class="description-container">
+                                    <div class="description-img">
+                                        {% if post.image %}
+                                            <img src="{{ post.image.url }}" class="thumbnail" style="width:100px; height:auto;">
+                                        {% endif %}
+                                    </div>
+            
+                                    <div class="description-content">
+                                        <h4>{{ post.title }}</h4>
+                                        <p>Description: {{ post.description }}</p>
+                                        <p>Price: {{ post.price }}</p>
+                                    </div>
+            
+                                </div>
+                            </div>
+                        {% endfor %}
+                        
+                    {% else %}
+                        <p>No posts found.</p>
+                    {% endif %}
+                </div>
+
             </div>
         </div>
     </div>
 
 
   
-    <h1>Search results</h1>
+    
 
-    <div class="parenting-posts">
-        {% if marketposts %}
-            {% for post in marketposts %}
-                <div class="post-container" onclick="window.location.href='{{ post.get_absolute_url }}'">
-                    <div class="marketplace-user-info">
-                        <h4>Seller: {{ post.author }}</h4>
-                        <p>Posted on: {{ post.created_on }}</p>
-                    </div>
-
-                    <div class="description-container">
-                        <div class="description-img">
-                            {% if post.image %}
-                                <img src="{{ post.image.url }}" class="thumbnail" style="width:100px; height:auto;">
-                            {% endif %}
-                        </div>
-
-                        <div class="description-content">
-                            <h4>{{ post.title }}</h4>
-                            <p>Description: {{ post.description }}</p>
-                            <p>Price: {{ post.price }}</p>
-                        </div>
-
-                    </div>
-                </div>
-            {% endfor %}
-            
-        {% else %}
-            <p>No posts found.</p>
-        {% endif %}
-    </div>
-
-    <div class="parenting-posts">
-        {% if posts %}
-            {% for post in posts %}
-                <div class="post-container" onclick="window.location.href='{{ post.get_absolute_url }}'">
-                    <div class="marketplace-user-info">
-                        <h4>Seller: {{ post.author }}</h4>
-                        <p>Posted on: {{ post.created_on }}</p>
-                    </div>
-
-                    <div class="description-container">
-                        <div class="description-img">
-                            {% if post.image %}
-                                <img src="{{ post.image.url }}" class="thumbnail" style="width:100px; height:auto;">
-                            {% endif %}
-                        </div>
-
-                        <div class="description-content">
-                            <h4>{{ post.title }}</h4>
-                            <p>Description: {{ post.description }}</p>
-                            <p>Price: {{ post.price }}</p>
-                        </div>
-
-                    </div>
-                </div>
-            {% endfor %}
-            
-        {% else %}
-            <p>No posts found.</p>
-        {% endif %}
-    </div>
+    
 {% endblock %}
 
 
