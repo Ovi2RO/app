@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "A_test_post_app",
     'laika',
     'tennis_app',
+    'apis',
 ]
 """
 'accounts': This is a custom app specific to your project that likely handles user accounts and related 
