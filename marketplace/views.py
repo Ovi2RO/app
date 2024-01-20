@@ -1,4 +1,3 @@
-from typing import Any
 from unicodedata import category
 from urllib import request
 from colorama import init

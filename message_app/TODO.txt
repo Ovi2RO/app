@@ -1,13 +1,14 @@
 WRITE:
-- [feature] search-bar (need to create a query set inside view)
+- [presentation] make posts for the project presentation
 - [feature] messaging between users
-- [style] make it look pwetty UwU
 - [tests] write tests
 - [documentation]
 - [feature] when user is under their own posts they should click on the button
 to delete and delete without being redirected
 - [model] make it possible to upload several images
 - [feature] auction mode where you can post bids for an item
+x [style] make it look pwetty UwU
+x [feature] search-bar (need to create a query set inside view)
 x [feature] user should be able to filter by their own posts
 x [views] user should be able to view the marketplace but not access create view if not logged in
 x [permissions] make it so that a moderator can delete any
@@ -17,6 +18,8 @@ x [model] make the category a list of options
 x [model] make image upload work
 
 FIX:
+- [html detail and view] a moderator shouldn't be able to alter post, just delete
+- [html update] cancel and successful update should redirect to detail page
 - [search_results] test the search results, see if they work as planned
 - [create form] make form unsubmittable if I don't add a picture
 x [home page] the page should have a button to redirect to my app
