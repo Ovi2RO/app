@@ -512,7 +512,7 @@ label[for="image-clear_id"] {
 /* Laika app */
 
 .laika{
-    background-image: url(/static/images/laika_bg.jpg);
+    background-image: url(/static/images/laika-alv2.jpg);
     -webkit-background-size: cover;
     background-size: cover;
     display: flex;
