@@ -106,7 +106,12 @@ DATABASES = {
         "PASSWORD": "dbadmin",
         "HOST": "206.81.28.205",
         "PORT": "5432",
-    }
+    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+
 }
 
 
