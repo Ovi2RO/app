@@ -5,9 +5,9 @@ from django.utils import timezone
 from PIL import Image
 
 class Posts(models.Model):
-    user_name = models.CharField(max_length=50)
-    user_last = models.CharField(max_length=100)
-    user_email = models.EmailField(max_length=100)
+    user_name = models.CharField(max_length=50)             #
+    user_last = models.CharField(max_length=100)            #
+    user_email = models.EmailField(max_length=100)          #
     GENDER_CHOICES = [
     ('A','Any'),
     ('M', 'Male'),
