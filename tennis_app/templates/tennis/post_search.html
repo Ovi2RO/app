@@ -27,7 +27,7 @@
             <div class="post-container" onclick="window.location.href='{% url 'tennis-post-detail' post.id  %}'">
                 <div class="tennis-user-info">
                     <p><strong>Name:</strong> </p>
-                    <h3>{{ post.user_name }} {{ post.user_last }}</h3>
+                    <h3>{{ post.author.first_name }} {{ post.author.last_name }}</h3>
                     <p>Member since:</p>
                     <p>{{ post.author.date_joined }}</p>
                 </div>

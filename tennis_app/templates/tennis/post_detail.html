@@ -12,7 +12,7 @@
 
       <div class="parenting-main-post">
         <div id="parenting-detail-title">
-          <h1>{{ post.user_name }}'s Profile</h1>
+          <h1>{{ post.author.first_name }}'s Profile</h1>
         </div>
 
         <div id="parenting-detail-description">
@@ -28,7 +28,7 @@
 
         <div id="parenting-detail-info">
           <p><strong>Phone:</strong> {{ post.phone }}</p>
-          <p><strong>Email:</strong> {{ post.user_email }}</p>
+          <p><strong>Email:</strong> {{ post.author.email }}</p>
           <p><strong>Language:</strong> {{ post.get_language_display }}</p>
         </div>
 
