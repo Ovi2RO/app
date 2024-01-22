@@ -1,84 +1,323 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-        <title>Welcome</title>
-    </head>
 
-    <body>
-        {% include "accounts/navbar.html" %}
-        
-        <div>
-            <div class="thing1">
-                <div class="thng">
-                    <h1>Laika</h1>
+{% load static %}
 
-                    <p>A unique place where pet lovers unite. Our community designed to bridge</p>
-                    <p>the gap between busy lifestyles and the need for reliable pet care. Whether you need a helping hand</p>
-                    <p>for your furry friend or can offer one, we are here to ensure that every pet</p>
-                    <p>receives love and care, even when you're away.</p>
-                    <br>
-                    <h4>Every paw counts!</h4>
-                    <h3>Developer: Alvaro Kalama</h3>
-                </div>
-            </div>
-            <div class="thing2">
-                <div class="thng">
-                    <h1>Marketplace</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css"
+        integrity="sha512-/VYneElp5u4puMaIp/4ibGxlTd2MV3kuUIroR3NSQjS2h9XKQNebRQiyyoQKeiGE9mRdjSCIZf9pb7AVJ8DhCg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/landing.css' %}">
+    <title>The Hub</title>
+</head>
 
-                    <p>Neighborly Deals</p>
-                    <p>Discover, Sell, Trade</p>
-                    <p>Your Local Marketplace!</p>
-                    <br>
-                    <h3>Developer: Andre Crujo</h3>
-                </div>
+<body>
+    <div class="preloader">
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+    </div>
+    <main class="main">
+        <nav>
+            <div class="logo">The<br> Hub</div>
+            <div class="navigation">
+                <a href="#projects">PROJECTS</a>
+                <a href="#contact">CONTACT</a>
+                <a href="{% url 'account_login' %}">SIGN IN</a>
+                <a href="{% url 'account_login' %}">SIGN UP</a>
             </div>
-            <div class="thing3">
-                <div class="thng">
-                    <h1>GameSetConnect</h1>
+        </nav>
+        <div class="container">
+            <section class="hero">
+                <div class="content">
+                    <h5 style="margin-right: auto;">WE ARE</h5>
+                    <h1><span>T</span><span>H</span><span>E</span><span>&nbsp</span>
+                        <span>H</span><span>U</span><span>B</span></h1>
+                    <h5 style="margin-left: auto;">APPS CREATIVE<br> <br> DUDES AND DUDETTES</h5>
+                </div>
+                <div class="left-sidebar">
+                    <a href="https://github.com/Ovi2RO/app"><i class="ri-github-line"></i> <span>GitHub</span></a>
+                </div>
+                <div class="right-sidebar">
+                    <span>SCROLL</span>
+                    <div class="bar"></div>
+                </div>
+            </section>
+            <section class="projects" id="projects">
+                <h5>OUR</h5>
+                <h2><span>P</span><span>R</span><span>O</span><span>J</span><span>E</span><span>C</span><span>T</span><span>S</span>
+                </h2>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="slide-content">
+                                <img src="/static/images/laika-alv.jpg" alt="">
+                                <div class="text">
+                                    <div class="project-name">LAIKA</div>
+                                    <div class="project-description">A unique place where pet lovers unite.</div>
+                                    <div class="project-description">Developer: Andre Crujo.</div>
+                                    <a href="#">VIEW PROJECT</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="slide-content">
+                                <img src="/static/images/market.jpg" alt="">
+                                <div class="text">
+                                    <div class="project-name">MARKETPLACE</div>
+                                    <div class="project-description">Neighborly Deals - discover, sell, trade!</div>
+                                    <div class="project-description">Developer: Andre Crujo.</div>
+                                    <a href="#">VIEW PROJECT</a>
+                                </div>
 
-                    <p>Welcome to GameSetConnect, where your next tennis match is just a click away!</p>
-                    <p>Unleash the power of our innovative tennis player matchmaker app, designed for enthusiasts like you. </p>
-                    <p>Whether you're a casual player or a seasoned pro, finding the perfect match has never been this easy. </p>
-                    <p>Say goodbye to solo rallies and hello to a network of tennis aficionados ready to elevate your game.</p>
-                    <p>Join GameSetConnect, where every match is a chance for new victories and unforgettable moments on the court!</p>
-                    <br>
-                    <h4>Your Perfect Tennis Match Awaits!</h4>
-                    <h3>Developer: Mahshid Bahari</h3>
-                </div>
-            </div>
-            <div class="thing4">
-                <div class="thng">
-                    <h1>Get togethers</h1>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="slide-content">
+                                <img src="/static/images/tennis.jpg" alt="">
+                                <div class="text">
+                                    <div class="project-name">GAMESET CONNECT</div>
+                                    <div class="project-description">A network of tennis aficionados.</div>
+                                    <div class="project-description">Developer: Mahshid Bahari.</div>
+                                    <a href="#">VIEW PROJECT</a>
+                                </div>
 
-                    <p>Welcome to our parental meet up and supporting group.</p>
-                    <p>Here we can arrange meet up with kids, offer your time, help each other, sharing ideas.</p>
-                    <p>The goal is to build a local community, which is gonna be ready to help each other.</p>
-                    <br>
-                    <h4>Let’s get together and support each other!</h4>
-                    <h3>Developer: Aleksandra Serwus</h3>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="slide-content">
+                                <img src="/static/images/parenthood.jpg" alt="">
+                                <div class="text">
+                                    <div class="project-name">GET TOGETHERS</div>
+                                    <div class="project-description">A parental meet up and supporting group.</div>
+                                    <div class="project-description">Developer: Aleksandra Serwus.</div>
+                                    <a href="#">VIEW PROJECT</a>
+                                </div>
+                            </div>
+                        </div>
+{#                        <div class="swiper-slide">#}
+{#                            <div class="slide-content">#}
+{#                                <img src="/static/images/laika-alv.jpg" alt="">#}
+{#                                <div class="text">#}
+{#                                    <div class="project-name">LAIKA</div>#}
+{#                                    <div class="project-description">A unique place where pet lovers unite.</div>#}
+{#                                    <div class="project-description">Developer: Andre Crujo.</div>#}
+{#                                    <a href="#">VIEW PROJECT</a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+                    </div>
                 </div>
-            </div>
-            <div class="thing5">
-                <div class="thng">
-                    <h1>Development team:</h1>
-                    <p><strong>Front-end:</strong></p>
-                    <p>Igor Sleptov</p>
-                    <p><strong>Back-end:</strong></p>
-                    <p>Mahshid Bahari</p>
-                    <p>Andre Crujo</p>
-                    <p>Alvaro Kalama</p>
-                    <p>Aleksandra Serwus</p>
-                    <p><strong>Team leader:</strong></p>
-                    <p>Ovidiu Tanase</p>
+            </section>
+            <section class="contact" id="contact">
+                <div class="left-contact">
+                    <h5>DEVELOPMENT</h5>
+                    <h2><span>T</span><span>E</span><span>A</span><span>M</span>
+                    </h2>
+                    <p>The Hub is a dynamic online platform that brings together a curated collection of user-centric applications from various developers.
+                        Each app is designed to simplify and enhance daily life, covering areas from productivity and wellness to learning and leisure.
+                        At The Hub, users find only the most practical and reliable apps, ensuring a quality experience.
+                        It's where convenience meets innovation, transforming everyday routines into more efficient and enjoyable experiences.</p>
+
+                    <h4>Front-end:</h4>
+                    <small>Igor Sleptov</small>
+
+                    <h4>Back-end:</h4>
+                    <small>Mahshid Bahari</small>
+                    <small>Andre Crujo</small>
+                    <small>Alvaro Kalama</small>
+                    <small>Aleksandra Serwus</small>
+
+                    <h4>Team leader:</h4>
+                    <small>Ovidiu Tanase</small>
+
                 </div>
-            </div>
+                <div class="right-contact">
+
+                    <form>
+                        <h2><span>C</span><span>O</span><span>N</span><span>T</span><span>A</span><span>C</span><span>T</span>
+                            &nbsp; <span>F</span><span>O</span><span>R</span><span>M</span></h2>
+                        <input type="text" placeholder="Your name">
+                        <input type="number" placeholder="Your phone">
+                        <input type="email" placeholder="Your e-mail">
+                        <input type="text" placeholder="Message">
+                        <button type="submit">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </section>
         </div>
-    </body>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+        integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+        integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        var swiper = new Swiper(".swiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            initialSlide: 0,
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 100,
+                modifier: 3,
+                slideShadows: false
+            },
+            loop: false,
+            breakpoints: {
+                640: {
+                    slidesPerView: 2
+                },
+                768: {
+                    slidesPerView: 2
+                },
+                1024: {
+                    slidesPerView: 3
+                },
+                1560: {
+                    slidesPerView: 3
+                }
+            }
+        });
+
+
+
+        gsap.to(".preloader .stripe", {
+            y: -2000,
+            stagger: 0.1,
+            ease: "power2.inOut",
+        })
+
+        gsap.to(".preloader", {
+            delay: 1,
+            display: "none"
+        })
+
+        gsap.from("nav", {
+            y: -50,
+            opacity: 0,
+            stagger: 0.1,
+            delay: 1,
+            ease: "power2.inOut",
+        })
+
+        gsap.from(".hero h1 span", {
+            y: 100,
+            opacity: 0,
+            stagger: 0.1,
+            delay: 0.2,
+            ease: "power2.inOut",
+        })
+
+        gsap.from(".hero h5", {
+            opacity: 0,
+            stagger: 0.1,
+            duration: 1,
+            delay: 1.5,
+            ease: "power2.inOut",
+        })
+
+        gsap.from(".hero .left-sidebar a", {
+            opacity: 0,
+            y: 100,
+            stagger: 0.1,
+            delay: 1.3,
+            ease: "power2.inOut",
+        })
+
+        gsap.from(".hero .right-sidebar", {
+            opacity: 0,
+            y: 100,
+            stagger: 0.1,
+            delay: 1.3,
+            ease: "power2.inOut",
+        })
+
+        ScrollTrigger.create({
+            trigger: ".projects",
+            animation: gsap.from(".projects h2 span", {
+                y: 50,
+                opacity: 0,
+                stagger: 0.05
+            }),
+            start: "top 50%",
+            end: "bottom top",
+        });
+        ScrollTrigger.create({
+            trigger: ".projects",
+            animation:
+                gsap.from(".projects .swiper-slide", {
+                    y: 200,
+                    opacity: 0,
+                    stagger: 0.1,
+                    duration: 1,
+                }),
+            start: "top 50%",
+            end: "bottom top",
+        });
+        ScrollTrigger.create({
+            trigger: ".contact",
+            animation:
+                gsap.from(".left-contact h2 span", {
+                    y: 50,
+                    opacity: 0,
+                    stagger: 0.05,
+                }),
+            start: "top 50%",
+            end: "bottom top",
+        });
+        ScrollTrigger.create({
+            trigger: ".contact",
+            animation:
+                gsap.from(".right-contact h2 span", {
+                    y: 50,
+                    opacity: 0,
+                    stagger: 0.05,
+                }),
+            start: "top 50%",
+            end: "bottom top",
+        });
+        ScrollTrigger.create({
+            trigger: ".contact",
+            animation:
+                gsap.from(".right-contact form input, .right-contact form button", {
+                    y: 50,
+                    opacity: 0,
+                    stagger: 0.05,
+                }),
+            start: "top 50%",
+            end: "bottom top",
+        });
+        ScrollTrigger.create({
+            trigger: ".contact",
+            animation:
+                gsap.from(".left-contact p, .left-contact h4, .left-contact small", {
+                    y: 50,
+                    opacity: 0,
+                    stagger: 0.05
+                }),
+            start: "top 50%",
+            end: "bottom top",
+        });
+    </script>
+</body>
+
 </html>
-
-
-
-
