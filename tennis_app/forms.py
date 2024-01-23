@@ -25,9 +25,6 @@ class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Posts
         fields = [
-            'user_name', 
-            'user_last',
-            'user_email',
             'user_gender',
             'birth_date',
             'phone',
@@ -42,17 +39,11 @@ class CreatePostForm(forms.ModelForm):
     widgets = {
             'birth_date': forms.DateInput(attrs={'type': 'date'},format=settings.DATE_INPUT_FORMAT),
 
-            'user_email': forms.EmailInput(attrs={'type': 'email', 'placeholder': 'Enter your email'}),
             'play_date': forms.DateInput(attrs={'type': 'date'},format=settings.DATE_INPUT_FORMAT),
             'image': forms.FileInput(),
         }
     
-    def clean_user_email(self):
-        # Validate the uniqueness of user_email
-        user_email = self.cleaned_data.get('user_email')
-        if Posts.objects.filter(user_email=user_email).exists():
-            raise forms.ValidationError("This email is already in use. Please choose a different one.")
-        return user_email
+
 
 """
 1. `class CreatePostForm(forms.ModelForm):`:
@@ -101,8 +92,6 @@ class UpdatePostForm(forms.ModelForm):
     class Meta:
         model = Posts
         fields = [
-            'user_name', 
-            'user_last',
             'user_gender',
             'birth_date',
             'phone',
@@ -167,9 +156,6 @@ class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Posts
         fields = [
-            'user_name', 
-            'user_last',
-            'user_email',
             'user_gender',
             'birth_date',
             'phone',
@@ -184,17 +170,10 @@ class CreatePostForm(forms.ModelForm):
     widgets = {
             'birth_date': forms.DateInput(attrs={'type': 'date'},format=settings.DATE_INPUT_FORMAT),
 
-            'user_email': forms.EmailInput(attrs={'type': 'email', 'placeholder': 'Enter your email'}),
             'play_date': forms.DateInput(attrs={'type': 'date'},format=settings.DATE_INPUT_FORMAT),
             'image': forms.FileInput(),
         }
     
-    def clean_user_email(self):
-        # Validate the uniqueness of user_email
-        user_email = self.cleaned_data.get('user_email')
-        if Posts.objects.filter(user_email=user_email).exists():
-            raise forms.ValidationError("This email is already in use. Please choose a different one.")
-        return user_email
 
 """
 The `CreatePostForm` class is a model form for the `Posts` model. It specifies the model to be used (`Posts`) and 
@@ -221,8 +200,6 @@ class UpdatePostForm(forms.ModelForm):
     class Meta:
         model = Posts
         fields = [
-            'user_name', 
-            'user_last',
             'user_gender',
             'birth_date',
             'phone',
