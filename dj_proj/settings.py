@@ -111,26 +111,19 @@ DATABASES = {
         'PASSWORD': os.getenv("DB_PASSWORD", 'postgres'),
         'HOST': os.getenv("HOST", 'localhost'),
         'PORT': os.getenv("PORT", '5432'),
-    }
+    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 }
 
 
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "app",
-#         "USER": "ovidiu",
-#         "PASSWORD": "dbadmin",
-#         "HOST": "206.81.28.205",
-#         "PORT": "5432",
-#     },
-#     # 'default': {
-#     #     'ENGINE': 'django.db.backends.sqlite3',
-#     #     'NAME': BASE_DIR / 'db.sqlite3',
-#     # }
 
-# }
+
+
+
 
 
 # Password validation
