@@ -6,3 +6,4 @@ db.sqlite3
 .idea/
 get_venv
 .laika_env
+.env
