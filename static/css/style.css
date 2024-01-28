@@ -246,7 +246,7 @@ button:hover {
 /* Parenting post-list page */
 
 .parenting{
-    background-image: url(/static/images/parenthood.jpg);
+    background-image: url(/static/images/parenting_anastasia_1.jpg);
     -webkit-background-size: cover;
     background-size: cover;
     display: flex;
