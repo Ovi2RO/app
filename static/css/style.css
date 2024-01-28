@@ -246,7 +246,7 @@ button:hover {
 /* Parenting post-list page */
 
 .parenting{
-    background-image: url(/static/images/parenthood.jpg);
+    background-image: url(/static/images/parenting_anastasia_1.jpg);
     -webkit-background-size: cover;
     background-size: cover;
     display: flex;
@@ -650,7 +650,7 @@ label[for="image-clear_id"] {
 /* Marketplace app */
 
 .marketplace{
-    background-image: url(/static/images/marketplace_bg.jpg);
+    background-image: url(/static/images/marketplace_anastasia_2.jpg);
     -webkit-background-size: cover;
     background-size: cover;
     display: flex;
