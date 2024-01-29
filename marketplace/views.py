@@ -2,6 +2,7 @@ from unicodedata import category
 from urllib import request
 from colorama import init
 from django import dispatch
+from django.forms import ValidationError
 from django.forms.models import BaseModelForm
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
@@ -71,20 +72,40 @@ class MarketplaceDetailView(DetailView):
         post = self.get_object()
         post_author = post.author
 
-        # here it should also be checked whether or not the room has been created
-        if chat_initiator != post_author:
+        if chat_initiator == post_author:
+            # maybe this option should not even appear in the html
+            raise ValidationError("It's nice to talk to yourself, but not in here")
+
+        elif self.check_room_exists(chat_initiator, post_author, post):
+            # here redirect user to the room
+            existing_room = Room.objects.filter(
+                chat_initiator=chat_initiator,
+                post_author=post_author,
+                market_post=post,
+            ).first()
+            return redirect(existing_room)
+
+        else:
             room = Room.objects.create(
-                name=f"chat_{chat_initiator}_{post_author}_{post}",
+                # name=f"chat_{chat_initiator}_{post_author}_{post}",
                 chat_initiator=chat_initiator,
                 post_author=post_author,
                 market_post=post,
             )
             return redirect(room)
-        else:
-            pass
 
-        def check_room_exists():
-            pass
+    def check_room_exists(self, chat_initiator, post_author, post):
+        all_rooms = Room.objects.all()
+        if all_rooms:
+            for room in all_rooms:
+                if (
+                    chat_initiator == room.chat_initiator
+                    and post_author == room.post_author
+                    and post == room.market_post
+                ):
+                    return True
+        return False
+
 
 
 """

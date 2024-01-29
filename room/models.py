@@ -10,7 +10,7 @@ from django.urls import reverse
 
 # Create your models here.
 class Room(models.Model):
-    name = models.CharField(max_length=255)
+    # name = models.CharField(max_length=255)
     # slug = models.SlugField(unique=True)
 
     chat_initiator = models.ForeignKey(
