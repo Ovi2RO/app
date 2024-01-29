@@ -36,14 +36,13 @@ class CreatePostForm(forms.ModelForm):
             'type',
             'club_name',
             ]
-    widgets = {
+        widgets = {
             'birth_date': forms.DateInput(attrs={'type': 'date'},format=settings.DATE_INPUT_FORMAT),
 
             'play_date': forms.DateInput(attrs={'type': 'date'},format=settings.DATE_INPUT_FORMAT),
             'image': forms.FileInput(),
+            #'user_gender': forms.Select(choices=[('M', 'Male'), ('F', 'Female'), ('O', 'Other')]),
         }
-    
-
 
 """
 1. `class CreatePostForm(forms.ModelForm):`:

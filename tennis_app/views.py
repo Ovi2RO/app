@@ -66,7 +66,7 @@ class PostListView(LoginRequiredMixin,ListView):
                 queryset = queryset.filter(user_gender=gender)             
                 
             if not ( start_date or end_date or location or level or language or gender):
-              queryset = self.model.objects.none()
+              queryset = self.model.objects.all()
 
             return queryset
 
