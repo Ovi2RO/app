@@ -1,6 +1,11 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from marketplace.models import MarketplaceItemPost
+from laika.models import Post as LaikaPost
+from tennis_app.models import Posts as TennisPost
+from get_app.models import Post as ParentPost
+
 
 # Create your models here.
 class Room(models.Model):
@@ -12,6 +17,10 @@ class Room(models.Model):
 
     # room instantiation would occur from other apps
     # need to figure out how to block access to said room to the users that aren't supposed to be in the chat
+    market_post = models.ForeignKey(MarketplaceItemPost, null=True)
+    laika_post = models.ForeignKey(LaikaPost, null=True)
+    tennis_post = models.ForeignKey(TennisPost, null=True)
+    parent_post = models.ForeignKey(ParentPost, null=True)
 
 
 class Message(models.Model):
