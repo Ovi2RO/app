@@ -1,11 +1,10 @@
-from typing import Any
 from unicodedata import category
 from urllib import request
 from colorama import init
 from django import dispatch
 from django.forms.models import BaseModelForm
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic import (
     ListView,
     CreateView,
@@ -22,6 +21,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import get_object_or_404
 from dj_proj.mixins import AuthorOrStaffRequiredMixin
 from django.urls import reverse
+from room.models import Room
 
 
 @method_decorator(login_required, name="dispatch")
@@ -30,6 +30,7 @@ class MarketplaceListView(ListView):
     template_name = "marketplace/marketplace_list.html"
     context_object_name = "marketposts"
     ordering = "-created_on"
+
 
 """
 1. `@method_decorator(login_required, name="dispatch")`:
@@ -65,6 +66,35 @@ class MarketplaceDetailView(DetailView):
     template_name = "marketplace/marketplace_detail.html"
     context_object_name = "marketpost"
 
+    def start_chat(self):
+        chat_initiator = self.request.user
+        post = self.get_object()
+        post_author = post.author
+
+        # here it should also be checked whether or not the room has been created
+        if chat_initiator != post_author:
+            room = Room.objects.create(
+                name=f"chat_{chat_initiator}_{post_author}_{post}",
+                chat_initiator=chat_initiator,
+                post_author=post_author,
+                market_post=post,
+            )
+            return redirect(room)
+        else:
+            pass
+
+        def check_room_exists():
+            pass
+
+
+"""
+start_chat
+defines who started the chat
+creates a room for the chat_initiator and post author to talk
+redirects to said room
+"""
+
+
 """
 1. `@method_decorator(login_required, name="dispatch")`:
    - This decorator is used to apply the `login_required` decorator to the `dispatch` method of the view.
@@ -99,6 +129,7 @@ class MarketplaceCreateView(CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
 
 """
 1. `@method_decorator(login_required, name="dispatch")`:
@@ -154,6 +185,7 @@ class MarketplaceUpdateView(AuthorOrStaffRequiredMixin, UpdateView):
     ]
     success_url = "/marketplace/"
 
+
 """
 1. `@method_decorator(login_required, name="dispatch")`:
    - This decorator is used to apply the `login_required` decorator to the `dispatch` method of the view.
@@ -188,7 +220,8 @@ class MarketplaceDeleteView(AuthorOrStaffRequiredMixin, DeleteView):
     model = MarketplaceItemPost
     template_name = "marketplace/marketplace_delete.html"
     success_url = "/marketplace/"
-    context_object_name = "marketpost"      #
+    context_object_name = "marketpost"  #
+
 
 """
 1. `@method_decorator(login_required, name="dispatch")`:
@@ -222,11 +255,11 @@ class MarketplaceSearchResultsView(ListView):
     context_object_name = "posts"
 
     def get_queryset(self):
-         form = SearchForm(self.request.GET)
-         posts = super().get_queryset()
+        form = SearchForm(self.request.GET)
+        posts = super().get_queryset()
 
-         if form.is_valid():
-            #need the clean form data
+        if form.is_valid():
+            # need the clean form data
             title = form.cleaned_data.get("title")
             user = form.cleaned_data.get("user")
             category = form.cleaned_data.get("category")
@@ -240,27 +273,28 @@ class MarketplaceSearchResultsView(ListView):
             # now we filter
 
             if title:
-                  posts = posts.filter(title__icontains=title)
+                posts = posts.filter(title__icontains=title)
             if user:
-                  posts = posts.filter(user__username__icontains=user)
+                posts = posts.filter(user__username__icontains=user)
             if category != "":
-                  posts = posts.filter(category=category)
+                posts = posts.filter(category=category)
             if min_price is not None:
-                  posts = posts.filter(price__gte=min_price)
+                posts = posts.filter(price__gte=min_price)
             if max_price is not None:
-                  posts = posts.filter(price__lte=max_price)
+                posts = posts.filter(price__lte=max_price)
             if location:
-                  posts = posts.filter(location__icontains=location)
+                posts = posts.filter(location__icontains=location)
             if init_post_date:
-                  posts = posts.filter(created_at__date__gte=init_post_date)
+                posts = posts.filter(created_at__date__gte=init_post_date)
             if final_post_date:
-                  posts = posts.filter(created_at__date__lte=final_post_date)
-         return posts
+                posts = posts.filter(created_at__date__lte=final_post_date)
+        return posts
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"] = SearchForm(self.request.GET)
         return context
+
 
 """
 1. `@method_decorator(login_required, name="dispatch")`:
@@ -307,6 +341,7 @@ class MarketplaceMyPostsView(ListView):
     def get_queryset(self):
         return super().get_queryset().filter(author=self.request.user)
 
+
 """
 1. `@method_decorator(login_required, name="dispatch")`:
    - This decorator is used to apply the `login_required` decorator to the `dispatch` method of the view.
@@ -343,4 +378,3 @@ class MarketplaceMyPostsView(ListView):
 
 class MarketplaceUserMessagingView:
     pass
-

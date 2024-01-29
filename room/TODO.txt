@@ -1,4 +1,8 @@
+- Another room should not be created if the user is already talking
+  to the person about that post (same 2 users, same post = no new room, redirect instead)
 - Permissions so that only the 2 users have access to the chat
+- HTML needs to have a button to create a chat
+- HTML new to show all rooms associated with the user
 - List view to list all the chats associated to the user
 - Chat should display the post from which it was started
 - Each app must be able to start a chat(
@@ -8,7 +12,6 @@
     - Parenting
 )
 - create users and posts to try this on
-- html should handle the new design of the 
 x Models made adequate(
     x they need to be able to reference any post from any app
 )
