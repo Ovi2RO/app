@@ -15,6 +15,7 @@
     
                 <div id="parenting-detail-description">
                     <p>Desctiption: {{post.description}}</p>
+                    <p><strong>Author:</strong> {{post.author}}</p>
                 </div>
     
                 <div id="parenting-detail-info">
@@ -22,10 +23,15 @@
                         {% if post.author.lpu.image %}
                             <img src="{{ post.author.lpu.image.url }}" style="width:100px; height:auto; border-radius: 50%;">
                         {% endif %}
-                        <p> {{ post.author.pet_set.first.pet_name}}</p>
+                        <p>Hi! My name is:</p>
+                        <p>{{ post.author.pet_set.first.pet_name}}</p>
                     </div>
 
-                    <p><strong>Author:</strong> {{post.author}}</p>
+                    <div class="laika-pet-detail-desc">
+                        <p>I am a proud {{ post.author.pet_set.first.species}} - {{ post.author.pet_set.first.species_type}} </p>
+                        <p><strong>Description:</strong> {{ post.author.pet_set.first.description}}</p>
+                    </div>
+                    
                     <div>
                         <p><strong>Post created:</strong> {{post.created_at}}</p>
                         <p><strong>Last updated:</strong> {{post.updated_at}}</p>

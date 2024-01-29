@@ -18,3 +18,9 @@ The `test_func` method checks if the logged-in user is a staff member (`user.is_
 user is the author of the post (`post.author == user`). If either of these conditions is true, the test 
 passes and the user is granted access to the view. 
 """
+
+class AuthorOnlyMixin(UserPassesTestMixin):
+    def test_func(self):
+        post = self.get_object()
+        user = self.request.user
+        return post.author == user

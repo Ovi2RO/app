@@ -117,6 +117,20 @@ body {
     color: #fff;
 }
 
+.home-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #67ba00;
+    color: #573b8a;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #01f801;
+    color: #c38601;
+}
+
 
 
 /* signin/signup page styling */
@@ -237,7 +251,16 @@ button:hover {
 }
 
 .content-container-home {
+    background-image: url(/static/images/home_bg.png);
+    -webkit-background-size: cover;
+    background-size: cover;
     display: flex;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    left: 0;
+    position: fixed;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -246,7 +269,7 @@ button:hover {
 /* Parenting post-list page */
 
 .parenting{
-    background-image: url(/static/images/parenthood.jpg);
+    background-image: url(/static/images/parenting_bg.png);
     -webkit-background-size: cover;
     background-size: cover;
     display: flex;
@@ -276,6 +299,15 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.form-container input[type="text"],
+.form-container input,
+.form-container select {
+    width: 150px;
+    background-color: rgba(82, 206, 0, 0.5);
+    border: 1px solid #573b8a;
+    color:#573b8a;
 }
 
 .form-container-elements {
@@ -396,7 +428,6 @@ form {
   
 .main-comment {
     order: -1;
-    border: 1px solid #573b8a;
     width: 1000px;
     display: flex;
 }
@@ -422,7 +453,7 @@ form {
 }
 
 .comment-body {
-    border: 1px solid #573b8a;
+    border: .5px solid #573b8a;
     width: 700px;
     padding-top: 20px;
 }
@@ -460,7 +491,7 @@ form {
 .parenting-update-form input,
 .parenting-update-form textarea{
     width: 500px;
-    background-color: rgba(109, 68, 184, 0.5);
+    background-color: rgba(82, 206, 0, 0.5);
 }
 
 .parenting-update-form input {
@@ -541,6 +572,10 @@ label[for="image-clear_id"] {
 
 .laika-pr label{
     color:#6d44b8
+}
+
+.laika-pet-detail-desc {
+    width: 400px;
 }
 
 /* tennis app */
@@ -650,7 +685,7 @@ label[for="image-clear_id"] {
 /* Marketplace app */
 
 .marketplace{
-    background-image: url(/static/images/marketplace_bg.jpg);
+    background-image: url(/static/images/market_bg.png);
     -webkit-background-size: cover;
     background-size: cover;
     display: flex;
@@ -667,7 +702,7 @@ label[for="image-clear_id"] {
 
 .marketplace-bg{
     width: 1200px;
-    background-color: rgba(128, 128, 128, 0.5);
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -714,7 +749,7 @@ label[for="image-clear_id"] {
 .marketplace-update-form input,
 .marketplace-update-form textarea,
 .marketplace-update-form #id_category {
-    background-color: rgba(98, 99, 98, 0.5);
+    background-color: rgba(82, 206, 0, 0.5);
     border-radius: 5px;
 }
 
@@ -729,7 +764,8 @@ label[for="image-clear_id"] {
     font-size: 15px;
     margin-top: 2px;
     margin-bottom: 2px;
-    background-color: rgba(129, 130, 129, 0.5);
+    color: #573b8a;
+   
 }
 
 #mk-btn {
@@ -745,8 +781,8 @@ label[for="image-clear_id"] {
 .mk-form-container-elements #id_final_post_date_year,
 .mk-form-container-elements #id_min_price,
 .mk-form-container-elements input {
-    background-color: rgba(210, 210, 210, 0.5);
     border-radius: 5px;
+    background-color: rgba(82, 206, 0, 0.5);
 }
 
 .mk-form-container-elements #id_category {

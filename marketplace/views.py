@@ -20,7 +20,7 @@ from .forms import CreateMarketplacePostForm, SearchForm
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import get_object_or_404
-from dj_proj.mixins import AuthorOrStaffRequiredMixin
+from dj_proj.mixins import AuthorOrStaffRequiredMixin, AuthorOnlyMixin
 from django.urls import reverse
 
 
@@ -94,7 +94,9 @@ class MarketplaceCreateView(CreateView):
     model = MarketplaceItemPost
     form_class = CreateMarketplacePostForm
     template_name = "marketplace/marketplace_create.html"
-    success_url = "/marketplace/"
+    #success_url = "/marketplace/"
+    def get_success_url(self):
+        return reverse("marketplace_detail", kwargs={"pk": self.object.pk})
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -141,7 +143,7 @@ class MarketplaceCreateView(CreateView):
 
 
 @method_decorator(login_required, name="dispatch")
-class MarketplaceUpdateView(AuthorOrStaffRequiredMixin, UpdateView):
+class MarketplaceUpdateView(AuthorOnlyMixin, UpdateView):
     model = MarketplaceItemPost
     template_name = "marketplace/marketplace_update.html"
     fields = [
@@ -152,7 +154,9 @@ class MarketplaceUpdateView(AuthorOrStaffRequiredMixin, UpdateView):
         "category",
         "image",
     ]
-    success_url = "/marketplace/"
+    #success_url = "/marketplace/"
+    def get_success_url(self):
+        return reverse("marketplace_detail", kwargs={"pk": self.object.pk})
 
 """
 1. `@method_decorator(login_required, name="dispatch")`:
@@ -255,7 +259,7 @@ class MarketplaceSearchResultsView(ListView):
                   posts = posts.filter(created_at__date__gte=init_post_date)
             if final_post_date:
                   posts = posts.filter(created_at__date__lte=final_post_date)
-         return posts
+         return posts.order_by('-created_on')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
