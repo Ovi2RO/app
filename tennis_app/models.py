@@ -7,7 +7,6 @@ from PIL import Image
 class Posts(models.Model):
 
     GENDER_CHOICES = [
-    ('A','Any'),
     ('M', 'Male'),
     ('F', 'Female'),
     ('O', 'Other'),
@@ -23,7 +22,6 @@ class Posts(models.Model):
     play_date = models.DateTimeField(default=timezone.now)
     image = models.ImageField(default='tennis_app/static/image/default.jpg', upload_to='tennis_app/static/image')
     LEVEL_CHOICES = [
-        ('A','Any'),
         ('1', 'Novice'),
         ('2', 'Intermediate'),
         ('3', 'Advanced'),
@@ -32,7 +30,6 @@ class Posts(models.Model):
     ]
     level = models.CharField(max_length=1, choices=LEVEL_CHOICES)
     LANGUAGE_CHOICES = [
-        ('A','Any'),
         ('1', 'english'),
         ('2', 'deutsch'),
         ('3', 'spanish'),

@@ -93,6 +93,7 @@ class PostCreateView(LoginRequiredMixin,CreateView):
 
     def form_valid(self, form):
         print('It is a message')
+        self.form_class()
         messages.success(self.request, 'Created successfully')
         form.instance.author = self.request.user
         return super(PostCreateView, self).form_valid(form)
