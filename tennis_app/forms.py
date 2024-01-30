@@ -266,9 +266,9 @@ class SearchForm(forms.Form):
     start_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=False)
     end_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=False)
     location = forms.CharField(max_length=50, required=False)
-    level = forms.ChoiceField(choices=Posts.LEVEL_CHOICES, required=False)
-    language = forms.ChoiceField(choices=Posts.LANGUAGE_CHOICES, required=False)
-    gender = forms.ChoiceField(choices=Posts.GENDER_CHOICES, required=False)
+    level = forms.ChoiceField(choices=[('A','Any')] + Posts.LEVEL_CHOICES, required=False)
+    language = forms.ChoiceField(choices=[('A','Any')] + Posts.LANGUAGE_CHOICES, required=False)
+    gender = forms.ChoiceField(choices=[('A','Any')] + Posts.GENDER_CHOICES, required=False)
 
 """
  `start_age` and `end_age` are integer fields that represent the minimum and maximum age values for searching 
