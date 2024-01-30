@@ -1,7 +1,6 @@
-- Permissions so that only the 2 users have access to the chat
-- List view to list all the chats associated to the user
 - HTML needs to have a button to create a chat
 - HTML new to show all rooms associated with the user
+- create users and posts to try this on
 - Chat should display the post from which it was started
 - Each app must be able to start a chat(
     - Marketplace
@@ -9,7 +8,10 @@
     - Tennis
     - Parenting
 )
-- create users and posts to try this on
+- Room shouldn't delete, the only thing that should be carried over is the post banner
+x List view to list all the chats associated to the user
+x Permissions so that only the 2 users have access to the chat (mixin)(test
+if the creation and access to the chat works before)
 x Another room should not be created if the user is already talking
   to the person about that post (same 2 users, same post = no new room, redirect instead)
 x Models made adequate(

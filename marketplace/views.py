@@ -1,3 +1,4 @@
+from typing import Any
 from unicodedata import category
 from urllib import request
 from colorama import init
@@ -67,6 +68,11 @@ class MarketplaceDetailView(DetailView):
     template_name = "marketplace/marketplace_detail.html"
     context_object_name = "marketpost"
 
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        if "start_chat" in request.GET:
+            return self.start_chat()
+        return super().get(request, *args, **kwargs)
+
     def start_chat(self):
         chat_initiator = self.request.user
         post = self.get_object()
@@ -83,7 +89,7 @@ class MarketplaceDetailView(DetailView):
                 post_author=post_author,
                 market_post=post,
             ).first()
-            return redirect(existing_room)
+            return redirect(existing_room.get_absolute_url())
 
         else:
             room = Room.objects.create(
@@ -92,7 +98,7 @@ class MarketplaceDetailView(DetailView):
                 post_author=post_author,
                 market_post=post,
             )
-            return redirect(room)
+            return redirect(room.get_absolute_url())
 
     def check_room_exists(self, chat_initiator, post_author, post):
         all_rooms = Room.objects.all()
@@ -105,7 +111,6 @@ class MarketplaceDetailView(DetailView):
                 ):
                     return True
         return False
-
 
 
 """

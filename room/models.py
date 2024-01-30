@@ -26,10 +26,10 @@ class Room(models.Model):
 
     # room instantiation would occur from other apps
     # need to figure out how to block access to said room to the users that aren't supposed to be in the chat
-    market_post = models.ForeignKey(MarketplaceItemPost, null=True)
-    laika_post = models.ForeignKey(LaikaPost, null=True)
-    tennis_post = models.ForeignKey(TennisPost, null=True)
-    parent_post = models.ForeignKey(ParentPost, null=True)
+    market_post = models.ForeignKey(MarketplaceItemPost, null=True, on_delete=models.CASCADE)
+    laika_post = models.ForeignKey(LaikaPost, null=True, on_delete=models.CASCADE)
+    tennis_post = models.ForeignKey(TennisPost, null=True, on_delete=models.CASCADE)
+    parent_post = models.ForeignKey(ParentPost, null=True, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse("room", kwargs={"pk": self.pk})

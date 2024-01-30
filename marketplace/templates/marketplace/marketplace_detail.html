@@ -33,10 +33,18 @@
                                 onclick="location.href='{{ marketpost.get_update_url }}'">Edit post</button>
                         <button type="button"
                                 onclick="location.href='{{ marketpost.get_delete_url }}'">Delete post</button>
+                        <a href="{% url 'marketplace_detail' %}?action=start_chat">Start Chat</a>
+                                
                     {% endif %}
                 </div>
             </div>
         </div>
     </div>
+    {% comment %} <script>
+        function startChatRoom() {
+            window.location.href = "{% url 'marketplace-detail' pk=marketpost.pk %}?start_chat=1";
+        }
+    </script> {% endcomment %}
+    
 {% endblock content %}
 
