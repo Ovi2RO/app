@@ -1,7 +1,5 @@
 {% extends "accounts/base.html" %}
-{% block title %}
-    Rooms
-{% endblock title %}
+
 {% block content %}
     <div>
         <h1>Rooms</h1>
@@ -10,8 +8,7 @@
         {% for room in rooms %}
             <div>
                 <div>
-                    <h2>{{ room.name }}</h2>
-                    <a href="{% url 'room' room.slug %}">Join</a>
+                    <a href="{% url 'room' room.pk %}">Join</a>
                 </div>
             </div>
         {% endfor %}

@@ -2,10 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, render
 from .models import Room, Message
 from django.core.exceptions import PermissionDenied
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from .forms import CreateRoom
 
 # Create your views here.
 
@@ -31,6 +32,18 @@ class RoomList(ListView):
         return queryset
 
     # this list only shows the chats the user has access to
+
+
+@method_decorator(login_required, name="dispatch")
+class RoomCreateView(CreateView):
+    model = Room
+    form_class = CreateRoom
+    template_name = "room/create_room.html"
+    success_url = "/chat_rooms/"
+
+    def form_valid(self, form):
+        form.instance.chat_initiator = self.request.user
+        return super().form_valid(form)
 
 
 @login_required

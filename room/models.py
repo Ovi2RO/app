@@ -12,7 +12,7 @@ from django.urls import reverse
 class Room(models.Model):
     # name = models.CharField(max_length=255)
     # slug = models.SlugField(unique=True)
-
+    room_name = models.CharField(max_length=100)
     chat_initiator = models.ForeignKey(
         User, related_name="chat_initiator", on_delete=models.CASCADE
     )
@@ -26,7 +26,9 @@ class Room(models.Model):
 
     # room instantiation would occur from other apps
     # need to figure out how to block access to said room to the users that aren't supposed to be in the chat
-    market_post = models.ForeignKey(MarketplaceItemPost, null=True, on_delete=models.CASCADE)
+    market_post = models.ForeignKey(
+        MarketplaceItemPost, null=True, on_delete=models.CASCADE
+    )
     laika_post = models.ForeignKey(LaikaPost, null=True, on_delete=models.CASCADE)
     tennis_post = models.ForeignKey(TennisPost, null=True, on_delete=models.CASCADE)
     parent_post = models.ForeignKey(ParentPost, null=True, on_delete=models.CASCADE)

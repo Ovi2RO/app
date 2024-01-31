@@ -68,49 +68,49 @@ class MarketplaceDetailView(DetailView):
     template_name = "marketplace/marketplace_detail.html"
     context_object_name = "marketpost"
 
-    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
-        if "start_chat" in request.GET:
-            return self.start_chat()
-        return super().get(request, *args, **kwargs)
+    # def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+    #     if "start_chat" in request.GET:
+    #         return self.start_chat()
+    #     return super().get(request, *args, **kwargs)
 
-    def start_chat(self):
-        chat_initiator = self.request.user
-        post = self.get_object()
-        post_author = post.author
+    # def start_chat(self):
+    #     chat_initiator = self.request.user
+    #     post = self.get_object()
+    #     post_author = post.author
 
-        if chat_initiator == post_author:
-            # maybe this option should not even appear in the html
-            raise ValidationError("It's nice to talk to yourself, but not in here")
+    #     if chat_initiator == post_author:
+    #         # maybe this option should not even appear in the html
+    #         raise ValidationError("It's nice to talk to yourself, but not in here")
 
-        elif self.check_room_exists(chat_initiator, post_author, post):
-            # here redirect user to the room
-            existing_room = Room.objects.filter(
-                chat_initiator=chat_initiator,
-                post_author=post_author,
-                market_post=post,
-            ).first()
-            return redirect(existing_room.get_absolute_url())
+    #     elif self.check_room_exists(chat_initiator, post_author, post):
+    #         # here redirect user to the room
+    #         existing_room = Room.objects.filter(
+    #             chat_initiator=chat_initiator,
+    #             post_author=post_author,
+    #             market_post=post,
+    #         ).first()
+    #         return redirect(existing_room.get_absolute_url())
 
-        else:
-            room = Room.objects.create(
-                # name=f"chat_{chat_initiator}_{post_author}_{post}",
-                chat_initiator=chat_initiator,
-                post_author=post_author,
-                market_post=post,
-            )
-            return redirect(room.get_absolute_url())
+    #     else:
+    #         room = Room.objects.create(
+    #             # name=f"chat_{chat_initiator}_{post_author}_{post}",
+    #             chat_initiator=chat_initiator,
+    #             post_author=post_author,
+    #             market_post=post,
+    #         )
+    #         return redirect(room.get_absolute_url())
 
-    def check_room_exists(self, chat_initiator, post_author, post):
-        all_rooms = Room.objects.all()
-        if all_rooms:
-            for room in all_rooms:
-                if (
-                    chat_initiator == room.chat_initiator
-                    and post_author == room.post_author
-                    and post == room.market_post
-                ):
-                    return True
-        return False
+    # def check_room_exists(self, chat_initiator, post_author, post):
+    #     all_rooms = Room.objects.all()
+    #     if all_rooms:
+    #         for room in all_rooms:
+    #             if (
+    #                 chat_initiator == room.chat_initiator
+    #                 and post_author == room.post_author
+    #                 and post == room.market_post
+    #             ):
+    #                 return True
+    #     return False
 
 
 """
